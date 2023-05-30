@@ -1,0 +1,25 @@
+@use "sass:math";
+@import '../../vars';
+
+.footer {
+    background: $cyan;
+    color: #FFFFFF;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contacts {
+    font-size: 14px;
+    line-height: math.div(17,14);
+    text-align: right;
+}
+
+.copyright {
+    font-size: 12px;
+    line-height: math.div(15,12);
+    margin-top: 21px;
+}
