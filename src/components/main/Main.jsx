@@ -1,8 +1,12 @@
+import Hero from "../hero/hero";
+
 function Main() {
     return (
-        <div>
-            
-        </div>
+        <main>
+            <div className="container">
+                <Hero />
+            </div>
+        </main>
      );
 }
 

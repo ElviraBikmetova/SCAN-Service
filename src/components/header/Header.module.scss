@@ -1,0 +1,14 @@
+@use '../../shared';
+
+.header {
+    @extend %d-f;
+    @extend %font-14-17;
+    letter-spacing: 0.01em;
+}
+
+.nav {
+    ul {
+        display: flex;
+        column-gap: 49px;
+    }
+}

@@ -1,5 +1,7 @@
 @use "sass:math";
-@import '../../vars';
+@use '../../mixins';
+@use '../../shared';
+@use '../../vars' as *;
 
 .footer {
     background: $cyan;
@@ -7,19 +9,15 @@
 }
 
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @extend %d-f;
 }
 
 .contacts {
-    font-size: 14px;
-    line-height: math.div(17,14);
+    @extend %font-14-17;
     text-align: right;
 }
 
 .copyright {
-    font-size: 12px;
-    line-height: math.div(15,12);
+    @include mixins.font(12px, 15px);
     margin-top: 21px;
 }

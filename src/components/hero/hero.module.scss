@@ -1,0 +1,27 @@
+@use '../../mixins';
+@use '../../shared';
+@use '../../vars' as * ;
+
+.hero {
+    display: flex;
+    letter-spacing: 0.01em;
+}
+
+.title {
+    font-family: 'Ferry';
+    font-weight: 900;
+    @include mixins.font(60px, 72px);
+    max-width: 743px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    @include mixins.font(20px, 24px);
+    margin-bottom: 70px;
+}
+
+.btn {
+    @include mixins.btn($blue, 16px, 64px, $white);
+    @include mixins.font(22px, 27px);
+}

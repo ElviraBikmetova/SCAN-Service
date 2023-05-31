@@ -1,0 +1,18 @@
+@use "sass:math";
+
+%d-f {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+%font-14-17 {
+    font-size: 14px;
+    line-height: math.div(17,14);
+}
+
+%font-10-12-gray {
+    font-size: 10px;
+    line-height: math.div(12,10);
+    opacity: 0.4;
+}

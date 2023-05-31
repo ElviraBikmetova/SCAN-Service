@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import SignIn from '../sign-in/SignIn';
+import Profile from '../profile/Profile';
 import Logo from '../../assets/logo.svg'
 import css from './Header.module.scss'
 
@@ -18,9 +20,9 @@ function Header() {
                         </ul>
                     </nav>
                     {isAuth ?
-                        <div>авторизованный</div>
+                        <Profile />
                         :
-                        <div>не авторизованный</div>
+                        <SignIn />
                     }
                 </div>
             </div>
