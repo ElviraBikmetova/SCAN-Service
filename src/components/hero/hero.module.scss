@@ -4,24 +4,31 @@
 
 .hero {
     display: flex;
-    letter-spacing: 0.01em;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    padding: 24px 0 59px;
 }
 
 .title {
-    font-family: 'Ferry';
     font-weight: 900;
     @include mixins.font(60px, 72px);
     max-width: 743px;
     width: 100%;
-    margin-bottom: 20px;
+    margin: 45px 0 20px;
+    position: absolute;
+    top: 0;
+
 }
 
 .subtitle {
     @include mixins.font(20px, 24px);
     margin-bottom: 70px;
+    max-width: 534px;
 }
 
 .btn {
     @include mixins.btn($blue, 16px, 64px, $white);
     @include mixins.font(22px, 27px);
+    margin-bottom: 90px;
 }

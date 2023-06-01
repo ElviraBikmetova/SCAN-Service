@@ -1,10 +1,11 @@
-import Hero from "../hero/hero";
+import Homepage from '../homepage/Homepage';
+import css from './Main.module.scss';
 
 function Main() {
     return (
-        <main>
+        <main className={css.main}>
             <div className="container">
-                <Hero />
+                <Homepage />
             </div>
         </main>
      );
