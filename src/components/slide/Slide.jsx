@@ -7,8 +7,8 @@ function Slide(props) {
     const {img, text} = props
     return (
         <div className={css.slide}>
-            <img src={img} alt={img} />
-            <p>{text}</p>
+            <img className={css.img} src={img} alt={img} />
+            <p className={css.text}>{text}</p>
         </div>
      );
 }

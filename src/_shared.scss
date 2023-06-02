@@ -16,3 +16,9 @@
     line-height: math.div(12,10);
     opacity: 0.4;
 }
+
+%card {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}

@@ -1,0 +1,55 @@
+@use '../../shared';
+@use '../../mixins';
+@use '../../vars' as * ;
+
+.card {
+    @extend %card;
+    @include mixins.font(18px, 22px);
+    max-width: 415px;
+    min-height: 540px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    @extend %d-f;
+    padding: 10px 15px 34px 30px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.title {
+    font-weight: 500;
+    @include mixins.font(30px, 36px);
+    margin-bottom: 10px;
+}
+
+.body {
+    padding: 33px 13px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.prices {
+    display: flex;
+    align-items: center;
+    column-gap: 19px;
+    font-weight: 500;
+}
+
+.price {
+    @include mixins.font(30px, 36px);
+}
+
+.oldPrice {
+    @include mixins.font(25px, 30px);
+    text-decoration-line: line-through;
+    opacity: 0.5;
+}
+
+.btn {
+    // margin-top: 55px;
+}

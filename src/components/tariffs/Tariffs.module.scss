@@ -9,3 +9,9 @@
 .title {
     margin-bottom: 70px;
 }
+
+.wrapper {
+    @extend %d-f;
+    column-gap: 38px;
+
+}

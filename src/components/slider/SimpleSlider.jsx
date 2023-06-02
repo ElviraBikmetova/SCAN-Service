@@ -23,7 +23,7 @@ function SimpleSlider() {
       <Slider {...settings}>
         {data.map(slide => {
           return (
-            <Slide img={slide.img} text={slide.text}/>
+            <Slide key={slide.id} img={slide.img} text={slide.text}/>
           )
         })}
       </Slider>
