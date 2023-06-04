@@ -1,9 +1,10 @@
 import css from './Tariff.module.scss'
-import clsx from 'clsx';
+import { useSelector } from 'react-redux'
+// import clsx from 'clsx';
 
 function Tariff(props) {
     const {tariff} = props
-    let headerClass = tariff.title
+    const isAuth = useSelector(state => state.user.isAuth)
     return (
         <div className={css.card}>
             <div className={css.header} style={{background: tariff.background, color: tariff.color}}>
@@ -14,6 +15,7 @@ function Tariff(props) {
                 <img src={tariff.img} alt={tariff.img} />
             </div>
             <div className={css.body}>
+                {isAuth && <p className={css.badge}>Текущий тариф</p>}
                 <div className={css.cost}>
                     <div className={css.prices}>
                         <span className={css.price}>{tariff.price}</span>
@@ -22,14 +24,15 @@ function Tariff(props) {
                     <p>{tariff.installment}</p>
                 </div>
                 <div className={css.list}>
-                    <p>{tariff.include}</p>
+                    <p className={css.ulTitle}>В тариф входит:</p>
                     <ul>
                         <li>{tariff.one}</li>
                         <li>{tariff.two}</li>
                         <li>{tariff.three}</li>
                     </ul>
                 </div>
-                <button className={css.btn}>{tariff.btn}</button>
+                {isAuth ? <button className={css.btnAuth}>Перейти в личный кабинет</button>
+                 : <button className={css.btn}>Подробнее</button>}
             </div>
 
         </div>

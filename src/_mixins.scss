@@ -6,10 +6,11 @@
     line-height: math.div($l-h,$f-s);
 }
 
-@mixin btn($b-color, $p-t-b, $p-l-r, $color: $black, $b-r: 5px) {
+@mixin btn($b-color: $blue, $p-t-b: initial, $p-l-r: initial, $m-w: none, $w: auto, $color: $black, $b-r: 5px) {
     background: $b-color;
     padding: $p-t-b $p-l-r;
     color: $color;
     border-radius: $b-r;
-
+    max-width: $m-w;
+    width: $w;
 }

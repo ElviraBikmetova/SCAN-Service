@@ -10,6 +10,10 @@
     padding: 24px 0 59px;
 }
 
+.content {
+    padding-bottom: 90px;
+}
+
 .title {
     font-weight: 900;
     @include mixins.font(60px, 72px);
@@ -28,7 +32,6 @@
 }
 
 .btn {
-    @include mixins.btn($blue, 16px, 64px, $white);
+    @include mixins.btn($p-t-b: 16px, $p-l-r: 64px, $color: $white);
     @include mixins.font(22px, 27px);
-    margin-bottom: 90px;
 }

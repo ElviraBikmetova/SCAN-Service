@@ -3,12 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        isAuth: false
+        isAuth: true
     },
     reducers: {
-        toggleAuth(state, action) {
-            const toggledUser = state.user
-            toggledUser.isAuth = !toggledUser.isAuth
+        toggleAuth(state) {
+            state.isAuth = !state.isAuth
         }
     }
 })
