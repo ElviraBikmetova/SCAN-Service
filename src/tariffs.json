@@ -10,7 +10,8 @@
         "one": "Безлимитная история запросов",
         "two": "Безопасная сделка",
         "three": "Поддержка 24/7",
-        "background": "#FFB64F"
+        "background": "#FFB64F",
+        "currentTariff": true
     },
     {
         "id": "12",
@@ -23,7 +24,8 @@
         "one": "Все пункты тарифа Beginner",
         "two": "Экспорт истории",
         "three": "Рекомендации по приоритетам",
-        "background": "#7CE3E1"
+        "background": "#7CE3E1",
+        "currentTariff": false
     },
     {
         "id": "13",
@@ -36,6 +38,7 @@
         "two": "Безлимитное количество запросов",
         "three": "Приоритетная поддержка",
         "background": "#000000",
+        "currentTariff": false,
         "color": "#ffffff"
     }
 ]

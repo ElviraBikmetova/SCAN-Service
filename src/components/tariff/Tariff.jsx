@@ -5,8 +5,13 @@ import { useSelector } from 'react-redux'
 function Tariff(props) {
     const {tariff} = props
     const isAuth = useSelector(state => state.user.isAuth)
+    const style = {
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: tariff.background
+    }
     return (
-        <div className={css.card}>
+        <div className={css.card} style={isAuth && tariff.currentTariff ? style : {}}>
             <div className={css.header} style={{background: tariff.background, color: tariff.color}}>
                 <div className={css.text}>
                     <p className={css.title}>{tariff.title}</p>
@@ -15,7 +20,7 @@ function Tariff(props) {
                 <img src={tariff.img} alt={tariff.img} />
             </div>
             <div className={css.body}>
-                {isAuth && <p className={css.badge}>Текущий тариф</p>}
+                {isAuth && tariff.currentTariff && <p className={css.badge}>Текущий тариф</p>}
                 <div className={css.cost}>
                     <div className={css.prices}>
                         <span className={css.price}>{tariff.price}</span>
@@ -31,7 +36,7 @@ function Tariff(props) {
                         <li>{tariff.three}</li>
                     </ul>
                 </div>
-                {isAuth ? <button className={css.btnAuth}>Перейти в личный кабинет</button>
+                {isAuth && tariff.currentTariff ? <button className={css.btnAuth}>Перейти в личный кабинет</button>
                  : <button className={css.btn}>Подробнее</button>}
             </div>
 

@@ -1,0 +1,88 @@
+@use '../../mixins';
+@use '../../vars' as * ;
+@use '../../shared';
+
+.search {
+    padding: 69px 0 64px;
+    display: flex;
+    letter-spacing: 0.03em;
+}
+
+.title {
+    @include mixins.font(40px, 48px);
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    letter-spacing: 0.02em;
+    @include mixins.font(20px, 24px);
+    margin-bottom: 47px;
+}
+
+.form {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 21px 40px 32px 43px;
+    display: flex;
+    @include mixins.font(18px, 22px);
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    label {
+        margin-bottom: 20px;
+    }
+    input, select {
+        border: 1px solid #C7C7C7;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        width: 242px;
+        height: 43px;
+        margin-bottom: 30px;
+    }
+    input {
+        text-align: center;
+    }
+    input[type='date'] {
+        width: 176px;
+        height: 43px;
+    }
+    select {
+        padding-left: 22px;
+    }
+}
+
+.date {
+    display: flex;
+    column-gap: 20px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: column;
+    label {
+        margin-bottom: 16px;
+    }
+    input {
+        margin-right: 17px;
+    }
+}
+
+.submit {
+    @include mixins.btn(rgba(89, 112, 255, 0.5), 16px, 118px, $color: $white);
+    margin-bottom: 10px;
+    font-weight: 500;
+    @include mixins.font(22px, 27px);
+}
+
+.required {
+    @extend %font-14-17;
+}
