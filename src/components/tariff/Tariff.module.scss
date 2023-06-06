@@ -1,6 +1,6 @@
-@use '../../shared';
-@use '../../mixins';
-@use '../../vars' as * ;
+@use '../../styles/shared';
+@use '../../styles/mixins';
+@use '../../styles/vars' as * ;
 
 .card {
     @extend %card;
@@ -68,7 +68,7 @@
     li {
         margin-top: 5px;
         padding-left: 28px;
-        background-image: url(../../assets/tick.svg);
+        background-image: url(../../assets/img/tick.svg);
         background-position: 0 0;
         background-size: 20px 20px;
         background-repeat: no-repeat;

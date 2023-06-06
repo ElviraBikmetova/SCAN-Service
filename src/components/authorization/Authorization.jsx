@@ -1,9 +1,9 @@
 import css from './Authorization.module.scss';
-import authorization from '../../assets/authorization.svg'
-import lock from '../../assets/lock.svg'
-import google from '../../assets/google.svg'
-import facebook from '../../assets/facebook.svg'
-import yandex from '../../assets/yandex.svg'
+import authorization from '../../assets/img/authorization.svg'
+import lock from '../../assets/img/lock.svg'
+import google from '../../assets/img/google.svg'
+import facebook from '../../assets/img/facebook.svg'
+import yandex from '../../assets/img/yandex.svg'
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 

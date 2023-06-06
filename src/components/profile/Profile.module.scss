@@ -1,6 +1,6 @@
-@use '../../vars' as * ;
-@use '../../mixins';
-@use '../../shared';
+@use '../../styles/vars' as * ;
+@use '../../styles/mixins';
+@use '../../styles/shared';
 
 .profile {
     letter-spacing: normal;

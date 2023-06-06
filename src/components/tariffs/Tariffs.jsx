@@ -1,5 +1,5 @@
 import css from './Tariffs.module.scss'
-import data from '../../tariffs.json'
+import data from '../../json/tariffs.json'
 import Tariff from '../tariff/Tariff';
 
 function Tariffs() {

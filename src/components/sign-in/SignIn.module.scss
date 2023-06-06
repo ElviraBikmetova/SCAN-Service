@@ -1,5 +1,5 @@
-@use '../../vars' as *;
-@use '../../mixins';
+@use '../../styles/vars' as *;
+@use '../../styles/mixins';
 
 .auth {
     display: flex;

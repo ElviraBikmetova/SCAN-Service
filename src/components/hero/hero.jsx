@@ -1,5 +1,5 @@
 import css from './hero.module.scss'
-import hero from '../../assets/hero.svg'
+import hero from '../../assets/img/hero.svg'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 

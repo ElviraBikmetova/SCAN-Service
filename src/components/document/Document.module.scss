@@ -1,0 +1,56 @@
+@use '../../styles/mixins';
+@use '../../styles/vars' as * ;
+
+.document {
+    color: rgba(0, 0, 0, 0.5);
+    @include mixins.font(16px, 19px);
+    max-width: 640px;
+    width: 100%;
+    padding: 19px 30px 35px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.header {
+    margin-bottom: 24px;
+    display: flex;
+    column-gap: 14px;
+}
+
+.source {
+    text-decoration-line: underline;
+}
+
+.title {
+    @include mixins.font(26px, 31px);
+    color: #000000;
+}
+
+.tag {
+    @include mixins.font(12px, 15px);
+    @include mixins.btn($orange, 3px, 12px);
+    display: inline-block;
+    margin: 14px 0;
+}
+
+.img {
+    object-fit: cover;
+    width: 581px;
+    height: 158px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.text {
+    margin-bottom: 32px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.link {
+    @include mixins.btn($aquamarine, 14px, 32px);
+}

@@ -1,5 +1,5 @@
-@use '../../shared';
-@use '../../mixins';
+@use '../../styles/shared';
+@use '../../styles/mixins';
 
 .slide {
     @extend %card;

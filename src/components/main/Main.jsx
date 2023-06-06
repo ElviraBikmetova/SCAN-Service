@@ -2,7 +2,7 @@ import Homepage from '../homepage/Homepage';
 import Authorization from '../authorization/Authorization';
 import css from './Main.module.scss';
 import { Route, Routes } from 'react-router-dom';
-import Search from '../search/Search';
+import SearchPage from '../search-page/SearchPage';
 
 function Main() {
     return (
@@ -11,7 +11,7 @@ function Main() {
                 <Routes>
                     <Route path='/' element={<Homepage />} />
                     <Route path='authorization' element={<Authorization />} />
-                    <Route path='search' element={<Search />} />
+                    <Route path='search' element={<SearchPage />} />
                 </Routes>
 
             </div>

@@ -1,7 +1,7 @@
 @use "sass:math";
-@use '../../mixins';
-@use '../../shared';
-@use '../../vars' as *;
+@use '../../styles/mixins';
+@use '../../styles/shared';
+@use '../../styles/vars' as *;
 
 .footer {
     background: $cyan;

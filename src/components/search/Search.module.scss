@@ -1,6 +1,6 @@
-@use '../../mixins';
-@use '../../vars' as * ;
-@use '../../shared';
+@use '../../styles/mixins';
+@use '../../styles/vars' as * ;
+@use '../../styles/shared';
 
 .search {
     padding: 69px 0 64px;

@@ -1,6 +1,6 @@
-@use '../../mixins';
-@use '../../shared';
-@use '../../vars' as * ;
+@use '../../styles/mixins';
+@use '../../styles/shared';
+@use '../../styles/vars' as * ;
 
 .authorization {
     padding: 70px 0 80px;
