@@ -1,8 +1,8 @@
-import Homepage from '../homepage/Homepage';
-import Authorization from '../authorization/Authorization';
+import Homepage from './homepage/Homepage';
+import Authorization from './authorization/Authorization';
 import css from './Main.module.scss';
 import { Route, Routes } from 'react-router-dom';
-import SearchPage from '../search-page/SearchPage';
+import SearchPage from './search-page/SearchPage';
 
 function Main() {
     return (

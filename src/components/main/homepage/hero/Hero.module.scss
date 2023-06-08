@@ -1,0 +1,37 @@
+@use '../../../../styles/mixins';
+@use '../../../../styles/shared';
+@use '../../../../styles/vars' as * ;
+
+.hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    padding: 24px 0 59px;
+}
+
+.content {
+    padding-bottom: 90px;
+}
+
+.title {
+    font-weight: 900;
+    @include mixins.font(60px, 72px);
+    max-width: 743px;
+    width: 100%;
+    margin: 45px 0 20px;
+    position: absolute;
+    top: 0;
+
+}
+
+.subtitle {
+    @include mixins.font(20px, 24px);
+    margin-bottom: 70px;
+    max-width: 534px;
+}
+
+.btn {
+    @include mixins.btn($p-t-b: 16px, $p-l-r: 64px, $color: $white);
+    @include mixins.font(22px, 27px);
+}

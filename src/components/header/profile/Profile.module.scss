@@ -1,0 +1,32 @@
+@use '../../../styles/vars' as * ;
+@use '../../../styles/mixins';
+@use '../../../styles/shared';
+
+.profile {
+    letter-spacing: normal;
+    @extend %d-f;
+    max-width: 175px + 128px + 111px;
+    width: 100%;
+}
+
+.user {
+    display: flex;
+    column-gap: 4px;
+}
+
+.info {
+    text-align: end ;
+}
+
+.name {
+    opacity: 0.7;
+}
+
+.btn {
+    @extend %font-10-12-gray;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+}

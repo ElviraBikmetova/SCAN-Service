@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SignIn from '../sign-in/SignIn';
-import Profile from '../profile/Profile';
+import SignIn from '../header/sign-in/SignIn';
+import Profile from '../header/profile/Profile';
 import Logo from '../../assets/img/logo.svg'
 import css from './Header.module.scss'
 

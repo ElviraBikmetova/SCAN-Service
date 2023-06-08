@@ -1,0 +1,17 @@
+@use '../../../../styles/mixins';
+@use '../../../../styles/shared';
+@use '../../../../styles/vars' as * ;
+
+.tariffs {
+    padding: 50px 0 118px;
+}
+
+.title {
+    margin-bottom: 70px;
+}
+
+.wrapper {
+    @extend %d-f;
+    column-gap: 38px;
+
+}

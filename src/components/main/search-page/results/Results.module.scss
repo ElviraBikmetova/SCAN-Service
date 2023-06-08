@@ -1,0 +1,84 @@
+@use '../../../../styles/shared';
+@use '../../../../styles/mixins';
+@use '../../../../styles/vars' as * ;
+
+.results {
+    letter-spacing: 0.02em;
+    padding-bottom: 109px;
+}
+
+.overall {
+    padding: 25px 0 57px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    max-width: 509px;
+    letter-spacing: 0.04em;
+    @include mixins.font(40px, 48px);
+    margin: 44px 0 36px;
+}
+
+.subtitle {
+    max-width: 440px;
+    @include mixins.font(20px, 24px);
+}
+
+.summary {
+    @include mixins.font(18px, 22px);
+}
+
+.h2 {
+    @include mixins.font(30px, 36px);
+    margin-bottom: 17px;
+}
+
+.found {
+    color: #949494;
+    margin-bottom: 27px;
+}
+
+.overallSummary {
+    border: 2px solid $cyan;
+    border-radius: 10px;
+    display: flex;
+}
+
+.slider {
+    padding: 17px 0;
+    width: 90%;
+}
+
+.summaryHeader {
+    padding: 17px 27px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 26px;
+    background: $cyan;
+    color: $white;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.docs {
+    padding: 41px 0 38px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 38px;
+}
+
+.btn {
+    @include mixins.btn($p-t-b: 16px, $p-l-r: 52px, $color: $white);
+    letter-spacing: 0.04em;
+    @include mixins.font(22px, 27px);
+    margin: 0 auto;
+}

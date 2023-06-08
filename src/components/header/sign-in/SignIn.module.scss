@@ -1,0 +1,29 @@
+@use '../../../styles/vars' as *;
+@use '../../../styles/mixins';
+
+.auth {
+    display: flex;
+    align-items: center;
+    column-gap: 18px;
+}
+
+.reg {
+    color: $black;
+    opacity: 0.4;
+}
+
+.line {
+    width: 2px;
+    height: 26px;
+    background: $cyan;
+    opacity: 0.6;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.btn {
+    font-weight: 500;
+    @include mixins.btn($aquamarine, 4px, 10px);
+    // background: $aquamarine;
+    // border-radius: 5px;
+    // padding: 4px 10px;
+}

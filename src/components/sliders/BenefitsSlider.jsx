@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Benefit from "../benefit/Benefit";
+import Benefit from "../main/homepage/benefits/benefit/Benefit";
 import data from '../../json/slides.json'
 import watch from '../../assets/img/watch.svg'
 import loupe from '../../assets/img/loupe.svg'

@@ -1,0 +1,5 @@
+@use '../../../styles/mixins';
+
+h2 {
+    @include mixins.font(45px, 54px);
+}

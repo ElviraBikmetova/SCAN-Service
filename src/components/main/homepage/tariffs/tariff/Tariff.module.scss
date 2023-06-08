@@ -1,0 +1,93 @@
+@use '../../../../../styles/shared';
+@use '../../../../../styles/mixins';
+@use '../../../../../styles/vars' as * ;
+
+.card {
+    @extend %card;
+    @include mixins.font(18px, 22px);
+    max-width: 415px;
+    width: 100%;
+    min-height: 540px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    @extend %d-f;
+    padding: 10px 15px 34px 30px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.title {
+    font-weight: 500;
+    @include mixins.font(30px, 36px);
+    margin-bottom: 10px;
+}
+
+.body {
+    padding: 33px 13px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    position: relative;
+}
+
+.badge {
+    @extend %font-14-17;
+    @include mixins.btn(#3BA5E0, 3px, 13px, $color: $white, $b-r: 10px);
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
+
+.prices {
+    display: flex;
+    align-items: center;
+    column-gap: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.price {
+    @include mixins.font(30px, 36px);
+}
+
+.oldPrice {
+    @include mixins.font(25px, 30px);
+    text-decoration-line: line-through;
+    opacity: 0.5;
+}
+
+.list {
+    ul {
+        list-style-type: none;
+    }
+    li {
+        margin-top: 5px;
+        padding-left: 28px;
+        background-image: url(../../../../../assets/img/tick.svg);
+        background-position: 0 0;
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+    }
+}
+
+.ulTitle {
+    @include mixins.font(20px, 24px);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.btn {
+    @include mixins.btn($p-t-b: 18px, $p-l-r: 0, $m-w: 355px, $w: 100%, $color: $white);
+    @include mixins.font(20px, 24px);
+}
+
+.btnAuth {
+    @include mixins.btn(#D2D2D2, 18px, 0, 355px, 100%);
+    @include mixins.font(20px, 24px);
+}
+

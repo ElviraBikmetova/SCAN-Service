@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from '../../json/summary.json';
-import ResultCard from "../result-card/ResultCard";
+import ResultCard from "../main/search-page/results/result-card/ResultCard";
 
 function SummarySlider() {
     const settings = {
