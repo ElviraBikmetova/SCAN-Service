@@ -4,7 +4,9 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         token: '',
-        isAuth: false
+        isAuth: false,
+        usedCompanyCount: 0,
+        companyLimit: 0
     },
     reducers: {
         userAuth(state, action) {
@@ -17,12 +19,13 @@ const userSlice = createSlice({
             state.token = ''
             state.isAuth = false
         },
-        toggleAuth(state) {
-            state.isAuth = !state.isAuth
+        userInfo(state, action) {
+            state.usedCompanyCount = action.payload.eventFiltersInfo.usedCompanyCount
+            state.companyLimit = action.payload.eventFiltersInfo.companyLimit
         }
     }
 })
 
-export const {userAuth, userLogout, toggleAuth} = userSlice.actions
+export const {userAuth, userLogout, userInfo} = userSlice.actions
 
 export default userSlice.reducer

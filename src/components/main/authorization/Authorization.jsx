@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../../actions/user';
+import { getInfo, logIn } from '../../../services/user';
 
 function Authorization() {
     const [login, setLogin] = useState('')

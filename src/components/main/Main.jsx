@@ -8,19 +8,20 @@ import { useSelector } from 'react-redux';
 function Main() {
     const isAuth = useSelector(state => state.user.isAuth)
     const token = localStorage.getItem('token')
+
     const redirectFromAuth = <Navigate to='/' replace={true} state={{from: 'authorization'}} />
-    const redirectFromSearch = <Navigate to='/' replace={true} state={{from: 'search'}} />
+    const redirectFromSearch = <Navigate to='/authorization' replace={true} state={{from: 'search'}} />
+
     return (
         <main className={css.main}>
             <div className="container">
                 <Routes>
                     <Route path='/' element={<Homepage />} />
                     {isAuth && token ? <Route path='authorization' element={redirectFromAuth} />
-                    : <Route path='authorization' element={<Authorization />} />}
+                        : <Route path='authorization' element={<Authorization />} />}
                     {token ? <Route path='search' element={<SearchPage />} />
-                    : <Route path='search' element={redirectFromSearch} />}
+                        : <Route path='search' element={redirectFromSearch} />}
                 </Routes>
-
             </div>
         </main>
      );
