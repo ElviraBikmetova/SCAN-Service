@@ -1,17 +1,23 @@
 import css from './Search.module.scss'
 import search from '../../../../assets/img/search.svg'
+import { getSummary } from '../../../../requests/publications'
+import { useDispatch } from 'react-redux'
 
 function Search(props) {
     const {setResultsVisible} = props
-    const handleResultsVisible = () => {
+    const dispatch = useDispatch()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(getSummary())
         setResultsVisible(true)
     }
+
     return (
         <div className={css.search}>
             <div>
                 <h1 className={css.title}>Найдите необходимые данные в пару кликов.</h1>
                 <p className={css.subtitle}>Задайте параметры поиска. <br/> Чем больше заполните, тем точнее поиск.</p>
-                <form className={css.form}>
+                <form className={css.form} onSubmit={handleSubmit}>
                     <div className={css.left}>
                         <label htmlFor="inn">ИНН компании *</label>
                         <input id='inn' type="number" placeholder='10 цифр' />
@@ -40,7 +46,7 @@ function Search(props) {
                             <label><input type="checkbox" />Включать сводки новостей</label>
                         </div>
                         <div>
-                            <button className={css.submit} type='submit' onClick={handleResultsVisible}>Поиск</button>
+                            <button className={css.submit} type='submit'>Поиск</button>
                             <p className={css.required}>* Обязательные к заполнению поля</p>
                         </div>
                     </div>
