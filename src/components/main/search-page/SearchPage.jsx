@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getSummary } from "../../../requests/publications";
 import Results from "./results/Results";
 import Search from "./search/Search";
 
 function SearchPage() {
-    const [isResultsVisible, setResultsVisible] = useState(false)
+    const currentPage = localStorage.getItem('currentPage');
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        // if (currentPage) {
+            // setResultsVisible(true)
+            dispatch(getSummary())
+        // }
+    }, [])
+
+    // const [isResultsVisible, setResultsVisible] = useState(false)
     return (
         <>
-            {!isResultsVisible
-                ? <Search isResultsVisible={isResultsVisible} setResultsVisible={setResultsVisible} />
+            {currentPage !== 'SecondPage'
+                ? <Search />
                 : <Results /> }
         </>
      );

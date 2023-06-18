@@ -26,7 +26,6 @@ export const getInfo = () => {
             const usedCompanyCount = response.data.eventFiltersInfo.usedCompanyCount
             const companyLimit = response.data.eventFiltersInfo.companyLimit
             dispatch(userInfo({usedCompanyCount, companyLimit}))
-            console.log(response.data)
         } catch (e) {
             console.log(e.response.data.message)
         }

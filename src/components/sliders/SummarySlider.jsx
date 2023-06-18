@@ -1,26 +1,38 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from '../../json/summary.json';
+import mock from '../../json/summary.json';
 import ResultCard from "../main/search-page/results/result-card/ResultCard";
+import { useSelector } from "react-redux";
 
 function SummarySlider() {
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 8,
-        slidesToScroll: 1
-      };
+  const settings = {
+      infinite: true,
+      speed: 500,
+      slidesToShow: 8,
+      slidesToScroll: 1
+    };
 
-    return (
-      <Slider {...settings}>
-        {data.map(slide => {
-          return (
-            <ResultCard key={slide.id} slide={slide} />
-          )
-        })}
-      </Slider>
-     );
+  const histograms = useSelector(state => state.publications.summary.data)
+  let summary
+
+  if (histograms) {
+    summary = histograms[0].data.map((item, index) => ({
+      date: item.date,
+      totalDocuments: histograms[0].data[index].value,
+      riskFactors: histograms[1].data[index].value
+    }));
+  }
+
+  return (
+    <Slider {...settings}>
+      {summary && summary.map(slide => {
+        return (
+          <ResultCard key={slide.date} slide={slide}/>
+        )
+      })}
+    </Slider>
+    );
 }
 
 export default SummarySlider;

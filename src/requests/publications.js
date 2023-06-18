@@ -63,7 +63,8 @@ export const getSummary = () => {
               ]
         })
         .then( res => {
-            console.log(res.data)
+            // console.log(res.data)
+            // localStorage.setItem('histograms', true)
             dispatch(publicationsSummary(res.data))
         })
         .then( () => {

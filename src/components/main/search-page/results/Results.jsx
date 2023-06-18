@@ -2,11 +2,23 @@ import css from './Results.module.scss'
 import results from '../../../../assets/img/results.svg'
 import Document from './document/Document'
 import docs from '../../../../json/documents.json'
-import summary from '../../../../json/summary.json'
-import ResultCard from './result-card/ResultCard'
 import SummarySlider from '../../../sliders/SummarySlider'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getSummary } from '../../../../requests/publications'
 
 function Results() {
+    localStorage.setItem('currentPage', 'SecondPage')
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        // if (currentPage) {
+            // setResultsVisible(true)
+            dispatch(getSummary())
+        // }
+    }, [])
+
     return (
         <div className={css.results}>
             <section className={css.overall}>
