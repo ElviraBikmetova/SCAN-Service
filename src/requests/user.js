@@ -2,6 +2,7 @@ import $api from "./instance";
 import { userAuth, userInfo } from "../store/userSlice";
 
 export const logIn = (login, password) => {
+    // console.log('login', login)
     return dispatch => {
         $api.post('/account/login', {
             login,

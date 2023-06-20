@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function SummarySlider() {
   const settings = {
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 8,
       slidesToScroll: 1

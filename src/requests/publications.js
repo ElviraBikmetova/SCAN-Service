@@ -1,14 +1,12 @@
 import $api from "./instance";
-import {  } from "../store/userSlice";
 import { publicationsSummary } from "../store/publicationsSlice";
 
-export const getSummary = () => {
+export const getSummary = (inn, tonality, limit, startDate, endDate, onlyMainRole) => {
+    // console.log('inn in getSummary', inn)
+
     return dispatch => {
         $api.post('/objectsearch/histograms', {
-            "issueDateInterval": {
-                "startDate": "2019-01-01T00:00:00+03:00",
-                "endDate": "2023-05-31T23:59:59+03:00"
-              },
+            issueDateInterval: {startDate, endDate},
               "searchContext": {
                 "targetSearchEntitiesContext": {
                   "targetSearchEntities": [
@@ -16,13 +14,13 @@ export const getSummary = () => {
                       "type": "company",
                       "sparkId": null,
                       "entityId": null,
-                      "inn": 7710137066,
+                      inn,
                       "maxFullness": true,
                       "inBusinessNews": null
                     }
                   ],
-                  "onlyMainRole": true,
-                  "tonality": "any",
+                  onlyMainRole,
+                  tonality,
                   "onlyWithRiskFactors": false,
                   "riskFactors": {
                     "and": [],
@@ -53,8 +51,8 @@ export const getSummary = () => {
                 "excludeDigests": true
               },
               "similarMode": "duplicates",
-              "limit": 1000,
-              "sortType": "sourceInfluence",
+              limit,
+              "sortType": "issueDate",
               "sortDirectionType": "desc",
               "intervalType": "month",
               "histogramTypes": [

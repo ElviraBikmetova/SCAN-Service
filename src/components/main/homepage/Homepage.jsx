@@ -4,6 +4,7 @@ import Tariffs from "./tariffs/Tariffs";
 import css from './Homepage.module.scss'
 
 function Homepage() {
+    localStorage.removeItem('currentPage')
     return (
         <div>
             <Hero />

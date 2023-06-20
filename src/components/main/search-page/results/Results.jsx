@@ -7,15 +7,18 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getSummary } from '../../../../requests/publications'
 
-function Results() {
-    localStorage.setItem('currentPage', 'SecondPage')
+function Results(props) {
+    const {setResultsVisible} = props
+    localStorage.setItem('currentPage', 'resultsPage')
+    const request = JSON.parse(localStorage.getItem('request'))
+    // console.log('request', request)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         // if (currentPage) {
-            // setResultsVisible(true)
-            dispatch(getSummary())
+            setResultsVisible(true)
+            dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.onlyMainRole))
         // }
     }, [])
 
