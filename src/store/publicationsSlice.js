@@ -3,21 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 const publicationsSlice = createSlice({
     name: 'publications',
     initialState: {
-        summary: {}
+        histograms: {},
+        objectsearch: {},
+        documents: {}
     },
     reducers: {
         publicationsSummary(state, action) {
-            state.summary = action.payload
+            state.histograms = action.payload
         },
-        userLogout(state) {
-
+        publicationsList(state, action) {
+            state.objectsearch = action.payload
         },
-        userInfo(state, action) {
-
+        publicationsDocuments(state, action) {
+            state.documents = action.payload
         }
     }
 })
 
-export const {publicationsSummary} = publicationsSlice.actions
+export const {publicationsSummary, publicationsList, publicationsDocuments} = publicationsSlice.actions
 
 export default publicationsSlice.reducer

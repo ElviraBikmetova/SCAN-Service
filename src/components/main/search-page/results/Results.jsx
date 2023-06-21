@@ -3,7 +3,7 @@ import results from '../../../../assets/img/results.svg'
 import Document from './document/Document'
 import docs from '../../../../json/documents.json'
 import SummarySlider from '../../../sliders/SummarySlider'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getSummary } from '../../../../requests/publications'
 
@@ -11,16 +11,22 @@ function Results(props) {
     const {setResultsVisible} = props
     localStorage.setItem('currentPage', 'resultsPage')
     const request = JSON.parse(localStorage.getItem('request'))
-    // console.log('request', request)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
         // if (currentPage) {
             setResultsVisible(true)
-            dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.onlyMainRole))
+            dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.onlyMainRole, request.onlyWithRiskFactors, request.maxFullness, request.inBusinessNews, request.excludeTechNews, request.excludeAnnouncements, request.excludeDigests))
         // }
     }, [])
+
+    // const objectsearch = useSelector(state => state.publications.objectsearch)
+    // objectsearch && console.log(objectsearch)
+    // let overall
+
+    // if (objectsearch) {
+    //     overall = objectsearch.items.length
+    // }
 
     return (
         <div className={css.results}>
@@ -34,7 +40,7 @@ function Results(props) {
                 </div>
                 <div className={css.summary}>
                     <h2 className={css.h2}>Общая сводка</h2>
-                    <p className={css.found}>Найдено 4 221 вариантов</p>
+                    <p className={css.found}>Найдено {} вариантов</p>
                     <div className={css.overallSummary}>
                         <div className={css.summaryHeader}>
                             <p>Период</p>

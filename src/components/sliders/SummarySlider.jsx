@@ -13,7 +13,7 @@ function SummarySlider() {
       slidesToScroll: 1
     };
 
-  const histograms = useSelector(state => state.publications.summary.data)
+  const histograms = useSelector(state => state.publications.histograms.data)
   let summary
 
   if (histograms) {
