@@ -2,6 +2,7 @@ import $api from "./instance";
 import { publicationsDocuments, publicationsList, publicationsSummary } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
+    let ids
     // console.log('inn in getSummary', inn)
     const inputData = {
         issueDateInterval: {startDate, endDate},
@@ -70,6 +71,8 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
             $api.post('/objectsearch', inputData)
             .then(res => {
                 dispatch(publicationsList(res.data))
+                ids = res.data.items.map(item => item.encodedId)
+                // console.log(ids)
             })
             .catch(err => console.log(err.message))
         })
@@ -87,7 +90,7 @@ export const getDocuments= () => {
                 "ids": [ "1:0JPQqdGM0JNWCdCzf2Jt0LHQotGV0ZUh0ZbRlBXCt0Je0JHQruKAnDcUXkZQ0YvQscKnehLRnNC1KtGK0Ll9BWLigLo/HXXCrhw="
   ]
             })
-            dispatch(publicationsDocuments())
+            dispatch(publicationsDocuments(response.data))
         } catch (e) {
             console.log(e.response.data.message)
         }

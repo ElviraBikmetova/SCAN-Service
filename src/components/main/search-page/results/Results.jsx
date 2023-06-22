@@ -4,7 +4,7 @@ import Document from './document/Document'
 import docs from '../../../../json/documents.json'
 import SummarySlider from '../../../sliders/SummarySlider'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getSummary } from '../../../../requests/publications'
 
 function Results(props) {
@@ -20,13 +20,16 @@ function Results(props) {
         // }
     }, [])
 
-    // const objectsearch = useSelector(state => state.publications.objectsearch)
-    // objectsearch && console.log(objectsearch)
-    // let overall
+    const objectsearch = useSelector(state => state.publications.objectsearch)
+    const [overall, setOverall] = useState(0);
+    // console.log('objectsearch', objectsearch)
 
-    // if (objectsearch) {
-    //     overall = objectsearch.items.length
-    // }
+    useEffect(() => {
+        if (Object.keys(objectsearch).length > 0) {
+            setOverall(objectsearch.items.length)
+        //   console.log(objectsearch.items.length)
+        }
+      }, [objectsearch]);
 
     return (
         <div className={css.results}>
@@ -40,7 +43,7 @@ function Results(props) {
                 </div>
                 <div className={css.summary}>
                     <h2 className={css.h2}>Общая сводка</h2>
-                    <p className={css.found}>Найдено {} вариантов</p>
+                    <p className={css.found}>Найдено {overall} вариантов</p>
                     <div className={css.overallSummary}>
                         <div className={css.summaryHeader}>
                             <p>Период</p>

@@ -5,7 +5,7 @@ const publicationsSlice = createSlice({
     initialState: {
         histograms: {},
         objectsearch: {},
-        documents: {}
+        documents: []
     },
     reducers: {
         publicationsSummary(state, action) {
