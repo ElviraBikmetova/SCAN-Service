@@ -1,20 +1,51 @@
+import { formatDate } from '../../../../../utils/formatDate';
 import css from './Document.module.scss'
+import * as DOMPurify from 'dompurify'
+import HTMLReactParser from 'html-react-parser';
 
 function Document(props) {
     const {doc} = props
+    let category
+    const words = doc.attributes.wordCount.toLocaleString('ru-RU')
+    const pureText = DOMPurify.sanitize(doc.content.markup, {USE_PROFILES: { html: true }})
+    const text = HTMLReactParser(pureText)
+    console.log(doc.content.markup)
+
+    if (doc.attributes.isTechNews) {
+        category = 'Tехнические новости'
+    } else if (doc.attributes.isAnnouncement) {
+        category = 'Анонсы и события'
+    } else if (doc.attributes.isDigest) {
+        category = 'Сводки новостей'
+    } else {
+        category = 'Без категории'
+    }
+
+    function getVariantWord(number) {
+        let word = 'слов';
+        if (number % 10 === 1 && number % 100 !== 11) {
+          word += 'о';
+        } else if ((number % 10 >= 2 && number % 10 <= 4) && (number % 100 < 10 || number % 100 >= 20)) {
+          word += 'а';
+        } else {
+          word += '';
+        }
+        return word;
+      }
+
     return (
         <div className={css.document}>
             <div className={css.header}>
-                <p>{doc.issueDate}</p>
-                <a className={css.source} href={doc.url} target="_blank" >{doc.source.name}</a>
+                <p>{formatDate(doc.issueDate)}</p>
+                <a className={css.source} href={doc.url} target="_blank" rel="noopener">{doc.source.name}</a>
             </div>
             <p className={css.title}>{doc.title.text}</p>
-            <div className={css.tag}>технические новости</div>
+            <div className={css.tag}>{category}</div>
             <img className={css.img} src={doc.img} alt={doc.img} />
-            <p className={css.text}>текст статьи</p>
+            <p className={css.text}>{text}</p>
             <div className={css.footer}>
-                <a className={css.link} href="">Читать в источнике</a>
-                <p>кол-во слов</p>
+                <a className={css.link} href={doc.url} target="_blank" rel="noopener">Читать в источнике</a>
+                <p>{words} {getVariantWord(words)}</p>
             </div>
         </div>
      );

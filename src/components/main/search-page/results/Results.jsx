@@ -31,6 +31,18 @@ function Results(props) {
         }
       }, [objectsearch]);
 
+      function getVariantWord(number) {
+        let word = 'варант';
+        if (number % 10 === 1 && number % 100 !== 11) {
+          word += '';
+        } else if ((number % 10 >= 2 && number % 10 <= 4) && (number % 100 < 10 || number % 100 >= 20)) {
+          word += 'а';
+        } else {
+          word += 'ов';
+        }
+        return word;
+      }
+
     const documents = useSelector(state => state.publications.documents)
     const [docs, setDocs] = useState([])
 
@@ -45,7 +57,7 @@ function Results(props) {
     }, [documents])
     // const doc =  publications
     // const doc = documents.length > 0 ? documents[0].ok : null
-    console.log(Array.isArray(docs))
+    // console.log(Array.isArray(docs))
 
     return (
         <div className={css.results}>
@@ -59,7 +71,7 @@ function Results(props) {
                 </div>
                 <div className={css.summary}>
                     <h2 className={css.h2}>Общая сводка</h2>
-                    <p className={css.found}>Найдено {overall} вариантов</p>
+                    <p className={css.found}>Найдено {overall} {getVariantWord(overall)}</p>
                     <div className={css.overallSummary}>
                         <div className={css.summaryHeader}>
                             <p>Период</p>
