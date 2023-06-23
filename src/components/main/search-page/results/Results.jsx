@@ -1,7 +1,7 @@
 import css from './Results.module.scss'
 import results from '../../../../assets/img/results.svg'
 import Document from './document/Document'
-import docs from '../../../../json/documents.json'
+// import docs from '../../../../json/documents.json'
 import SummarySlider from '../../../sliders/SummarySlider'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -21,7 +21,7 @@ function Results(props) {
     }, [])
 
     const objectsearch = useSelector(state => state.publications.objectsearch)
-    const [overall, setOverall] = useState(0);
+    const [overall, setOverall] = useState(0)
     // console.log('objectsearch', objectsearch)
 
     useEffect(() => {
@@ -30,6 +30,22 @@ function Results(props) {
         //   console.log(objectsearch.items.length)
         }
       }, [objectsearch]);
+
+    const documents = useSelector(state => state.publications.documents)
+    const [docs, setDocs] = useState([])
+
+    useEffect(() => {
+        if (Array.isArray(documents)) {
+            setDocs(documents.map(doc => doc.ok))
+          } else {
+            console.error('documents is not an array')
+          }
+        // setPublications(documents.map(doc => doc.ok))
+            // console.log(documents)
+    }, [documents])
+    // const doc =  publications
+    // const doc = documents.length > 0 ? documents[0].ok : null
+    console.log(Array.isArray(docs))
 
     return (
         <div className={css.results}>

@@ -73,7 +73,9 @@
     padding: 41px 0 38px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     column-gap: 38px;
+    row-gap: 30px;
 }
 
 .btn {

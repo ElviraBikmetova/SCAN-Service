@@ -72,24 +72,24 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
             .then(res => {
                 dispatch(publicationsList(res.data))
                 ids = res.data.items.map(item => item.encodedId)
+                $api.post('/documents', {ids})
+                .then(res => {
+                    dispatch(publicationsDocuments(res.data))
+                })
+                .catch(err => console.log(err.message))
+                // dispatch(getDocuments(ids))
                 // console.log(ids)
             })
             .catch(err => console.log(err.message))
-        })
-        .then(() => {
-           dispatch(getDocuments())
         })
         .catch(err => console.log(err.message))
     }
 }
 
-export const getDocuments= () => {
+export const getDocuments= (ids) => {
     return async dispatch => {
         try {
-            const response = await  $api.post('/documents', {
-                "ids": [ "1:0JPQqdGM0JNWCdCzf2Jt0LHQotGV0ZUh0ZbRlBXCt0Je0JHQruKAnDcUXkZQ0YvQscKnehLRnNC1KtGK0Ll9BWLigLo/HXXCrhw="
-  ]
-            })
+            const response = await  $api.post('/documents', {ids})
             dispatch(publicationsDocuments(response.data))
         } catch (e) {
             console.log(e.response.data.message)
