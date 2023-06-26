@@ -1,6 +1,6 @@
 import { formatDate } from '../../../../../utils/formatDate';
 import css from './Document.module.scss'
-import * as DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
 import HTMLReactParser from 'html-react-parser';
 
 function Document(props) {
@@ -8,8 +8,9 @@ function Document(props) {
     let category
     const words = doc.attributes.wordCount.toLocaleString('ru-RU')
     const pureText = DOMPurify.sanitize(doc.content.markup, {USE_PROFILES: { html: true }})
+    // console.log(pureText)
     const text = HTMLReactParser(pureText)
-    console.log(doc.content.markup)
+    // console.log(doc.content.markup)
 
     if (doc.attributes.isTechNews) {
         category = 'Tехнические новости'
@@ -42,7 +43,8 @@ function Document(props) {
             <p className={css.title}>{doc.title.text}</p>
             <div className={css.tag}>{category}</div>
             <img className={css.img} src={doc.img} alt={doc.img} />
-            <p className={css.text}>{text}</p>
+            {/* <p className={css.text}>{text}</p> */}
+            <div className={css.text} dangerouslySetInnerHTML={{__html: pureText}}></div>
             <div className={css.footer}>
                 <a className={css.link} href={doc.url} target="_blank" rel="noopener">Читать в источнике</a>
                 <p>{words} {getVariantWord(words)}</p>

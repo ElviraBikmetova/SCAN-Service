@@ -1,8 +1,8 @@
 import $api from "./instance";
-import { publicationsDocuments, publicationsList, publicationsSummary } from "../store/publicationsSlice";
+import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
-    let ids
+    // let ids
     // console.log('inn in getSummary', inn)
     const inputData = {
         issueDateInterval: {startDate, endDate},
@@ -70,15 +70,14 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
         .then( () => {
             $api.post('/objectsearch', inputData)
             .then(res => {
-                dispatch(publicationsList(res.data))
-                ids = res.data.items.map(item => item.encodedId)
-                $api.post('/documents', {ids})
+                const ids = res.data.items.map(item => item.encodedId)
+                dispatch(publicationsIds(ids))
+                const idsForRequest = ids.slice(0, 10)
+                $api.post('/documents', {ids: idsForRequest})
                 .then(res => {
                     dispatch(publicationsDocuments(res.data))
                 })
                 .catch(err => console.log(err.message))
-                // dispatch(getDocuments(ids))
-                // console.log(ids)
             })
             .catch(err => console.log(err.message))
         })
@@ -89,8 +88,8 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
 export const getDocuments= (ids) => {
     return async dispatch => {
         try {
-            const response = await  $api.post('/documents', {ids})
-            dispatch(publicationsDocuments(response.data))
+            const response = await $api.post('/documents', {ids: ids})
+            dispatch(addDocuments(response.data))
         } catch (e) {
             console.log(e.response.data.message)
         }

@@ -5,7 +5,7 @@ import Document from './document/Document'
 import SummarySlider from '../../../sliders/SummarySlider'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getSummary } from '../../../../requests/publications'
+import { getDocuments, getSummary } from '../../../../requests/publications'
 
 function Results(props) {
     const {setResultsVisible} = props
@@ -20,16 +20,38 @@ function Results(props) {
         // }
     }, [])
 
-    const objectsearch = useSelector(state => state.publications.objectsearch)
+    const ids = useSelector(state => state.publications.ids)
     const [overall, setOverall] = useState(0)
+    const [idsCount, setIdsCount] = useState(0)
     // console.log('objectsearch', objectsearch)
 
+
     useEffect(() => {
-        if (Object.keys(objectsearch).length > 0) {
-            setOverall(objectsearch.items.length)
+        if (ids.length > 0) {
+            setOverall(ids.length)
         //   console.log(objectsearch.items.length)
+            // const idsForRequest = ids.slice(idsCount,  idsCount+10)
+            // if(idsForRequest.length) {
+            // dispatch(getDocuments(idsForRequest))
+            // }
         }
-      }, [objectsearch]);
+      }, [ids]);
+
+    useEffect(() => {
+        if (ids.length > 0) {
+            // setOverall(ids.length)
+        //   console.log(objectsearch.items.length)
+            const idsForRequest = ids.slice(idsCount,  idsCount+10)
+            if(idsForRequest.length) {
+            dispatch(getDocuments(idsForRequest))
+            }
+        }
+      }, [ idsCount]);
+
+      const showMore = () => {
+        // const idsForRequest = ids.slice(idsCount, 10);
+        setIdsCount(idsCount => idsCount + 10)
+      }
 
       function getVariantWord(number) {
         let word = 'варант';
@@ -45,6 +67,7 @@ function Results(props) {
 
     const documents = useSelector(state => state.publications.documents)
     const [docs, setDocs] = useState([])
+    let remainingPublications = ids.length - documents.length
 
     useEffect(() => {
         if (Array.isArray(documents)) {
@@ -89,7 +112,7 @@ function Results(props) {
                 <div className={css.docs}>
                     {docs.map(doc => <Document key={doc.id} doc={doc} />)}
                 </div>
-                <button className={css.btn}>Показать больше</button>
+                {!!remainingPublications && <button className={css.btn} onClick={showMore} >Показать больше</button>}
             </section>
         </div>
      );
