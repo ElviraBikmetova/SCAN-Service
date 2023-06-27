@@ -16,7 +16,7 @@ export const logIn = (login, password) => {
         .then( () => {
             dispatch(getInfo())
         })
-        .catch(err => console.log(err.message))
+        .catch(err => console.log(err.response.data.message))
     }
 }
 

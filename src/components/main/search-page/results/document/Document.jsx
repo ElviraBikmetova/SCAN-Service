@@ -7,10 +7,20 @@ function Document(props) {
     const {doc} = props
     let category
     const words = doc.attributes.wordCount.toLocaleString('ru-RU')
-    const pureText = DOMPurify.sanitize(doc.content.markup, {USE_PROFILES: { html: true }})
-    // console.log(pureText)
-    const text = HTMLReactParser(pureText)
-    // console.log(doc.content.markup)
+    const sanitizedText = DOMPurify.sanitize(doc.content.markup, {USE_PROFILES: { html: true }})
+    // console.log(sanitizedText)
+    const parsedText = HTMLReactParser(sanitizedText)
+    console.log(parsedText)
+    const isImg = /<img.*?>/i.test(parsedText)
+    let src
+    if (isImg) {
+        src = parsedText.match(/<img.*?src="(.*?)".*?>/)[1]
+    } else {
+        src = ''
+    }
+    // console.log(img)
+    const text = parsedText.replace(/<img.*?>/g, "")
+    // console.log(text)
 
     if (doc.attributes.isTechNews) {
         category = 'Tехнические новости'
@@ -36,15 +46,17 @@ function Document(props) {
 
     return (
         <div className={css.document}>
-            <div className={css.header}>
-                <p>{formatDate(doc.issueDate)}</p>
-                <a className={css.source} href={doc.url} target="_blank" rel="noopener">{doc.source.name}</a>
+            <div className={css.top}>
+                <div className={css.header}>
+                    <p>{formatDate(doc.issueDate)}</p>
+                    <a className={css.source} href={doc.url} target="_blank" rel="noopener">{doc.source.name}</a>
+                </div>
+                <p className={css.title}>{doc.title.text}</p>
+                <div className={css.tag}>{category}</div>
+                <img className={css.img} src={src} alt='Изображение статьи' />
+                {/* <p className={css.text}>{text}</p> */}
+                <div className={css.text} dangerouslySetInnerHTML={{__html: text}}></div>
             </div>
-            <p className={css.title}>{doc.title.text}</p>
-            <div className={css.tag}>{category}</div>
-            <img className={css.img} src={doc.img} alt={doc.img} />
-            {/* <p className={css.text}>{text}</p> */}
-            <div className={css.text} dangerouslySetInnerHTML={{__html: pureText}}></div>
             <div className={css.footer}>
                 <a className={css.link} href={doc.url} target="_blank" rel="noopener">Читать в источнике</a>
                 <p>{words} {getVariantWord(words)}</p>

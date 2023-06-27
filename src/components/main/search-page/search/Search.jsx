@@ -3,6 +3,7 @@ import search from '../../../../assets/img/search.svg'
 import { getSummary } from '../../../../requests/publications'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { validateInn } from '../../../../utils/validation'
 
 function Search(props) {
     const {setResultsVisible} = props
@@ -19,6 +20,7 @@ function Search(props) {
     const [excludeAnnouncements , setExcludeAnnouncements] = useState(false)
     const [excludeDigests , setExcludeDigests] = useState(false)
 
+    let error = {}
     // console.log(onlyMainRole)
     const request = {inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests}
     localStorage.setItem('request', JSON.stringify(request))
@@ -30,6 +32,8 @@ function Search(props) {
         setResultsVisible(true)
     }
 
+
+
     return (
         <div className={css.search}>
             <div>
@@ -38,7 +42,7 @@ function Search(props) {
                 <form className={css.form} onSubmit={handleSubmit}>
                     <div className={css.left}>
                         <label htmlFor="inn">ИНН компании *</label>
-                        <input id='inn' type="number" placeholder='10 цифр' value={inn} onChange={e => setInn(e.target.value)} />
+                        <input id='inn' type="number" placeholder='10 цифр' value={inn} onChange={e => setInn(e.target.value)} onBlur={e => validateInn(inn, error)} />
                         <label htmlFor="tone">Тональность</label>
                         <select id="tone" value={tonality} onChange={e => setTonality(e.target.value)} >
                             <option value="any">Любая</option>

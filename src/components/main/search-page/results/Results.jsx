@@ -46,7 +46,7 @@ function Results(props) {
             dispatch(getDocuments(idsForRequest))
             }
         }
-      }, [ idsCount]);
+      }, [idsCount]);
 
       const showMore = () => {
         // const idsForRequest = ids.slice(idsCount, 10);

@@ -77,11 +77,11 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
                 .then(res => {
                     dispatch(publicationsDocuments(res.data))
                 })
-                .catch(err => console.log(err.message))
+                .catch(err => console.log(err.response.data.message))
             })
-            .catch(err => console.log(err.message))
+            .catch(err => console.log(err.response.data.message))
         })
-        .catch(err => console.log(err.message))
+        .catch(err => console.log(err.response.data.message))
     }
 }
 

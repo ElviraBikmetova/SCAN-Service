@@ -5,11 +5,14 @@
     color: rgba(0, 0, 0, 0.5);
     @include mixins.font(16px, 19px);
     max-width: 640px;
-    max-height: 694px;
+    height: 694px;
     width: 100%;
     padding: 19px 30px 35px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header {
@@ -43,7 +46,7 @@
 }
 
 .text {
-    margin-bottom: 32px;
+    // margin-bottom: 32px;
     max-height: 228px;
     overflow: hidden;
     text-overflow: ellipsis;
