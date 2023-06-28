@@ -10,7 +10,7 @@ function Document(props) {
     const sanitizedText = DOMPurify.sanitize(doc.content.markup, {USE_PROFILES: { html: true }})
     // console.log(sanitizedText)
     const parsedText = HTMLReactParser(sanitizedText)
-    console.log(parsedText)
+    // console.log(parsedText)
     const isImg = /<img.*?>/i.test(parsedText)
     let src
     if (isImg) {

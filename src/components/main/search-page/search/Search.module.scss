@@ -53,9 +53,18 @@
     }
 }
 
+.error {
+    @extend %error;
+    margin: -28px 12% 10px;
+}
+
 .date {
     display: flex;
     column-gap: 20px;
+    .error {
+        margin-left: 16px;
+        margin-right: 0;
+    }
 }
 
 .right {
@@ -63,6 +72,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    button[disabled] {
+        cursor: default;
+        background: rgba(89, 112, 255, 0.5);
+    }
 }
 
 .checkbox {
@@ -77,7 +90,7 @@
 }
 
 .submit {
-    @include mixins.btn(rgba(89, 112, 255, 0.5), 16px, 118px, $color: $white);
+    @include mixins.btn(rgba(89, 112, 255, 1), 16px, 118px, $color: $white);
     margin-bottom: 10px;
     font-weight: 500;
     @include mixins.font(22px, 27px);
@@ -86,3 +99,4 @@
 .required {
     @extend %font-14-17;
 }
+

@@ -37,6 +37,10 @@
     color: #949494;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    button[disabled] {
+        cursor: default;
+        background: rgba(89, 112, 255, 0.5);
+    }
 }
 
 .header {
@@ -72,17 +76,20 @@
 }
 
 .error {
-    color: #FF5959;
-    @include mixins.font(14px, 17px);
+    @extend %error;
     text-align: center;
     margin-top: -14px;
 }
 
 .submit {
     margin: 10px 0 15px;
-    @include mixins.btn(rgba(89, 112, 255, 0.5), 16px, 0, $color: #FFFFFF);
+    @include mixins.btn(rgba(89, 112, 255, 1), 16px, 0, $color: #FFFFFF);
     font-weight: 500;
     @include mixins.font(22px, 27px);
+}
+
+.submit[disabled=true] {
+    cursor: default;
 }
 
 .retrieve {

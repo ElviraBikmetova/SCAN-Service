@@ -17,7 +17,7 @@ export const logIn = (login, password) => {
             dispatch(getInfo())
         })
         .catch(err => {
-            console.log(err.response.data.message)
+            // console.log(err.response.data.message)
             dispatch(userError(err.response.data.message))
         })
     }
