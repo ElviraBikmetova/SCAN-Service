@@ -71,6 +71,13 @@
     height: 43px;
 }
 
+.error {
+    color: #FF5959;
+    @include mixins.font(14px, 17px);
+    text-align: center;
+    margin-top: -14px;
+}
+
 .submit {
     margin: 10px 0 15px;
     @include mixins.btn(rgba(89, 112, 255, 0.5), 16px, 0, $color: #FFFFFF);

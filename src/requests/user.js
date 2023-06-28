@@ -1,5 +1,5 @@
 import $api from "./instance";
-import { userAuth, userInfo } from "../store/userSlice";
+import { userAuth, userError, userInfo } from "../store/userSlice";
 
 export const logIn = (login, password) => {
     // console.log('login', login)
@@ -16,7 +16,10 @@ export const logIn = (login, password) => {
         .then( () => {
             dispatch(getInfo())
         })
-        .catch(err => console.log(err.response.data.message))
+        .catch(err => {
+            console.log(err.response.data.message)
+            dispatch(userError(err.response.data.message))
+        })
     }
 }
 
