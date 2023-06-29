@@ -33,11 +33,12 @@ function Search(props) {
         }
     })
 
-    console.log(errors)
-    console.log(isValid)
+    // console.log(errors)
+    // console.log(isValid)
 
     const limitValidate = {
         required: 'Обязательное поле',
+        valueAsNumber: true,
         min: {
             value: 1,
             message: 'Введите число от 1 до 1000'
@@ -45,8 +46,7 @@ function Search(props) {
         max: {
             value: 1000,
             message: 'Введите число от 1 до 1000'
-        },
-        valueAsNumber: true
+        }
     }
 
     const inn = watch('inn')
@@ -55,29 +55,65 @@ function Search(props) {
     const startDate = watch('startDate')
     const endDate = watch('endDate')
 
-    const validate = () => {
-        const startsDate = new Date(startDate);
-        const endsDate = new Date(endDate);
-        const currentDate = new Date();
-        let errors = ''
-        // if ((startDate > endDate) || (startDate > currentDate) || (endDate > currentDate)) {
-        //    dateErrors = 'Введите корректные данные'
-        //   }
+    const dateValidate = {
+        required: 'Введите корректные данные',
+        valueAsDate: true,
+        validate: () => {
+            const startingDate = new Date(startDate);
+            const endingDate = new Date(endDate);
+            const currentDate = new Date();
+            let errors = null
 
-        if (startsDate > endsDate) {
-            errors = "Дата окончания должна быть позже даты начала"
-          }
+            if (startingDate > endingDate) {
+                errors = "Дата окончания должна быть позже даты начала"
+              }
 
-          if (startsDate > currentDate) {
-            errors = "Дата начала не может быть в будущем времени"
-          }
+              if (startingDate > currentDate) {
+                errors = "Дата начала не может быть в будущем времени"
+              }
 
-          if (endsDate > currentDate) {
-            errors = "Дата окончания не может быть в будущем времени"
-          }
+              if (endingDate > currentDate) {
+                errors = "Дата окончания не может быть в будущем времени"
+              }
 
-          return errors
-      }
+            return errors
+        }
+    }
+
+    const innValidate = {
+        required: 'Обязательное поле',
+        minLength: {
+            value: 10,
+            message: 'ИНН не должен быть меньше 10 цифр'
+        },
+        maxLength: {
+            value: 10,
+            message: 'ИНН не должен быть больше 10 цифр'
+        },
+        pattern: {
+            value: /^\d+$/,
+            message: 'ИНН должен состоять только из цифр'
+        },
+        validate: () => {
+            let errors = null
+            let sum = 0
+            const coefficients = [2, 4, 10, 3, 5, 9, 4, 6, 8, 0]
+            for (let i in coefficients) {
+                sum += coefficients[i] * parseInt(inn[i])
+            }
+            let controlNumber = sum % 11;
+
+            if (controlNumber > 9) {
+                controlNumber %= 10;
+            }
+
+            if (controlNumber !== parseInt(inn[9])) {
+                errors = 'Неправильное контрольное число'
+            }
+
+            return errors
+        }
+    }
 
     const request = {inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests}
     localStorage.setItem('request', JSON.stringify(request))
@@ -96,7 +132,7 @@ function Search(props) {
                 <form className={css.form} onSubmit={handleSubmit(handleSubmitForm)}>
                     <div className={css.left}>
                         <label htmlFor="inn">ИНН компании *</label>
-                        <input id='inn' placeholder='10 цифр' {...register('inn', {required: 'Обязательное поле'})} />
+                        <input id='inn' placeholder='10 цифр' {...register('inn', innValidate)} />
                         {errors?.inn && <p className={css.error}>{errors?.inn?.message}</p>}
                         <label htmlFor="tonality">Тональность</label>
                         <select id="tonality" {...register('tonality')} >
@@ -111,16 +147,15 @@ function Search(props) {
                         <label htmlFor="date">Диапазон поиска *</label>
                         <div className={css.date}>
                             <div>
-                                <input id='date' type="date" placeholder='Дата начала' {...register('startDate', {required: 'Обязательное поле', validate})} />
-                                {errors?.startDate && <p className={css.error}>{errors?.startDate?.message}</p>}
+                                <input id='date' type="date" placeholder='Дата начала' {...register('startDate', dateValidate)} />
+                                {/* {(errors?.startDate && !isValid) && <p className={css.error}>{errors?.startDate?.message}</p>} */}
                             </div>
                             <div>
-                                <input type="date" placeholder='Дата конца' {...register('endDate', {required: 'Обязательное поле', validate})} />
-                                {errors?.endDate && <p className={css.error}>{errors?.endDate?.message}</p>}
+                                <input type="date" placeholder='Дата конца' {...register('endDate', dateValidate)} />
+                                {/* {(errors?.endDate && !isValid) &&  <p className={css.error}>{errors?.endDate?.message}</p>} */}
                             </div>
-                            {/* {dateErrors && <p className={css.error}>{dateErrors}</p>} */}
                         </div>
-                        {/* {(errors?.startDate || errors?.endDate) && <p className={css.error}>{errors?.startDate?.message || errors?.endDate?.message}</p>} */}
+                        {((errors?.startDate || errors?.endDate) && !isValid) && <p className={css.error}>{errors?.startDate?.message || errors?.endDate?.message}</p>}
                     </div>
                     <div className={css.right}>
                         <div className={css.checkbox}>

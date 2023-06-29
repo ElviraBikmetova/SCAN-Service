@@ -27,6 +27,7 @@ function SummarySlider() {
   return (
     <Slider {...settings}>
       {summary && summary.map(slide => {
+        // console.log(slide.date)
         return (
           <ResultCard key={slide.date} slide={slide}/>
         )

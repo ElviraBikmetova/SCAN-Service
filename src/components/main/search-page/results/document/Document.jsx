@@ -2,6 +2,7 @@ import { formatDate } from '../../../../../utils/formatDate';
 import css from './Document.module.scss'
 import DOMPurify from 'dompurify';
 import HTMLReactParser from 'html-react-parser';
+import documentStub from '../../../../../assets/img/document-stub.jpg'
 
 function Document(props) {
     const {doc} = props
@@ -11,15 +12,27 @@ function Document(props) {
     // console.log(sanitizedText)
     const parsedText = HTMLReactParser(sanitizedText)
     // console.log(parsedText)
-    const isImg = /<img.*?>/i.test(parsedText)
+    // console.log(doc.url)
+    // if (doc.url) {
+    //     console.log('is url')
+    // }
+    let stringText
+    if (Array.isArray(parsedText)) {
+        stringText = parsedText.join('')
+        // return stringText
+    } else {
+        stringText = parsedText
+        // return stringText
+    }
+    const isImg = /<img.*?>/i.test(stringText)
     let src
     if (isImg) {
-        src = parsedText.match(/<img.*?src="(.*?)".*?>/)[1]
+        src = stringText.match(/<img.*?src="(.*?)".*?>/)[1]
     } else {
         src = ''
     }
-    // console.log(img)
-    const text = parsedText.replace(/<img.*?>/g, "")
+    // console.log(src)
+    const text = stringText.replace(/<img.*?>/g, "")
     // console.log(text)
 
     if (doc.attributes.isTechNews) {
@@ -49,16 +62,16 @@ function Document(props) {
             <div className={css.top}>
                 <div className={css.header}>
                     <p>{formatDate(doc.issueDate)}</p>
-                    <a className={css.source} href={doc.url} target="_blank" rel="noopener">{doc.source.name}</a>
+                    <a className={css.source} href={doc.url ? doc.url : 'javascript:void(0)'} target={doc.url && "_blank"} rel={doc.url && "noopener"}>{doc.source.name}</a>
                 </div>
                 <p className={css.title}>{doc.title.text}</p>
                 <div className={css.tag}>{category}</div>
-                <img className={css.img} src={src} alt='Изображение статьи' />
+                <img className={css.img} src={src ? src : documentStub} alt='Изображение статьи' />
                 {/* <p className={css.text}>{text}</p> */}
                 <div className={css.text} dangerouslySetInnerHTML={{__html: text}}></div>
             </div>
             <div className={css.footer}>
-                <a className={css.link} href={doc.url} target="_blank" rel="noopener">Читать в источнике</a>
+                <a className={css.link} href={doc.url ? doc.url : 'javascript:void(0)'} target={doc.url && "_blank"} rel={doc.url && "noopener"}>Читать в источнике</a>
                 <p>{words} {getVariantWord(words)}</p>
             </div>
         </div>

@@ -55,16 +55,12 @@
 
 .error {
     @extend %error;
-    margin: -28px 12% 10px;
+    margin: -28px 0 10px;
 }
 
 .date {
     display: flex;
     column-gap: 20px;
-    .error {
-        margin-left: 16px;
-        margin-right: 0;
-    }
 }
 
 .right {

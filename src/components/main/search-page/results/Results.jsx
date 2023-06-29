@@ -16,7 +16,7 @@ function Results(props) {
     useEffect(() => {
         // if (currentPage) {
             setResultsVisible(true)
-            dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.onlyMainRole, request.onlyWithRiskFactors, request.maxFullness, request.inBusinessNews, request.excludeTechNews, request.excludeAnnouncements, request.excludeDigests))
+            dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.maxFullness, request.inBusinessNews, request.onlyMainRole, request.onlyWithRiskFactors, request.excludeTechNews, request.excludeAnnouncements, request.excludeDigests))
         // }
     }, [])
 

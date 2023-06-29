@@ -28,6 +28,8 @@
 .title {
     @include mixins.font(26px, 31px);
     color: #000000;
+    max-height: 62px;
+    overflow: hidden;
 }
 
 .tag {
@@ -49,7 +51,7 @@
     // margin-bottom: 32px;
     max-height: 228px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    // text-overflow: ellipsis;
     // white-space: nowrap;
 }
 
