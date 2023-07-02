@@ -6,6 +6,7 @@ import SummarySlider from '../../../sliders/SummarySlider'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getDocuments, getSummary } from '../../../../requests/publications'
+import clsx from 'clsx'
 
 function Results(props) {
     const {setResultsVisible} = props
@@ -101,7 +102,7 @@ function Results(props) {
                             <p>Всего</p>
                             <p>Риски</p>
                         </div>
-                        <div className={css.slider}>
+                        <div className={clsx(css.slider, 'summary-slider')}>
                             <SummarySlider />
                         </div>
                     </div>

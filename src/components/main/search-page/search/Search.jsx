@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form'
 
 function Search(props) {
     const {setResultsVisible} = props
-    // const [limit, setLimit ] = useState('1000') // убрать значение по умолчанию
     const [maxFullness, setMaxFullness] = useState(false)
     const [inBusinessNews, setInBusinessNews] = useState(false)
     const [onlyMainRole, setOnlyMainRole] = useState(false)
@@ -174,7 +173,7 @@ function Search(props) {
                     </div>
                 </form>
             </div>
-            <img src={search} alt="search" />
+            <img className={css.img} src={search} alt="search" />
         </div>
      );
 }

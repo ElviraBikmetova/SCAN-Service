@@ -49,11 +49,6 @@
     width: inherit;
 }
 
-.slider {
-    padding: 17px 0;
-    width: 90%;
-}
-
 .summaryHeader {
     padding: 17px 27px;
     display: flex;
@@ -63,6 +58,11 @@
     color: $white;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+}
+
+.slider {
+    padding: 17px 0;
+    width: 90%;
 }
 
 .list {

@@ -56,3 +56,38 @@ h1, h2 {
   width: 100%;
   padding: 0 15px;
 }
+
+.slick-prev, .slick-next {
+  &::before {
+    display: none;
+  }
+}
+
+.benefits-slider {
+  position: relative;
+  .slick-prev, .slick-next {
+    width: auto;
+    height: auto;
+  }
+  .slick-list {
+    overflow: hidden;
+    display: flex;
+  }
+  .slick-track {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+.summary-slider {
+  .slick-prev, .slick-next {
+    width: auto;
+    height: auto;
+  }
+  .slick-prev {
+    left: -165px;
+  }
+  .slick-next {
+    right: -50px;
+  }
+}

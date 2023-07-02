@@ -16,14 +16,19 @@
 .header {
     @extend %d-f;
     padding: 10px 15px 34px 30px;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 132px;
 }
 
 .title {
     font-weight: 500;
     @include mixins.font(30px, 36px);
     margin-bottom: 10px;
+}
+
+.img {
+    max-width: 90px;
 }
 
 .body {

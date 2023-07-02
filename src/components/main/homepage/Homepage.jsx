@@ -5,6 +5,7 @@ import css from './Homepage.module.scss'
 
 function Homepage() {
     localStorage.removeItem('currentPage')
+    localStorage.removeItem('request')
     return (
         <div>
             <Hero />

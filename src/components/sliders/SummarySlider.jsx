@@ -4,13 +4,36 @@ import "slick-carousel/slick/slick-theme.css";
 import mock from '../../json/summary.json';
 import ResultCard from "../main/search-page/results/result-card/ResultCard";
 import { useSelector } from "react-redux";
+import ArrowPrev from "../../assets/svg-in-js/arrrow-prev";
+import ArrowNext from "../../assets/svg-in-js/arrow-next";
+
+
+function SamplePrevArrow(props) {
+  const { className, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+      <ArrowPrev />
+    </div>
+  );
+}
+
+function SampleNextArrow(props) {
+  const { className, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+      <ArrowNext />
+    </div>
+  );
+}
 
 function SummarySlider() {
   const settings = {
       infinite: false,
       speed: 500,
       slidesToShow: 8,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      prevArrow: <SamplePrevArrow />,
+      nextArrow: <SampleNextArrow />
     };
 
   const histograms = useSelector(state => state.publications.histograms.data)

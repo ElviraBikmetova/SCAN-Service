@@ -17,7 +17,7 @@ function Tariff(props) {
                     <p className={css.title}>{tariff.title}</p>
                     <p className={css.subtitle}>{tariff.subtitle}</p>
                 </div>
-                <img src={tariff.img} alt={tariff.img} />
+                <img className={css.img} src={tariff.src} alt={tariff.alt} />
             </div>
             <div className={css.body}>
                 {isAuth && tariff.currentTariff && <p className={css.badge}>Текущий тариф</p>}
