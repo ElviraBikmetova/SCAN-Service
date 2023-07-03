@@ -23,6 +23,7 @@
 
 .source {
     text-decoration-line: underline;
+    overflow: hidden;
 }
 
 .title {
@@ -63,4 +64,16 @@
 
 .link {
     @include mixins.btn($aquamarine, 14px, 32px);
+}
+
+@media (max-width: 375px) {
+    .document {
+        padding: 15px;
+    }
+    .link {
+        // width: 220px;
+        max-width: 220px;
+        padding: 10px;
+        text-align: center;
+    }
 }

@@ -57,6 +57,7 @@ function Authorization() {
                     </div>
                 </form>
             </div>
+            <img className={css.authMobile} src={authorization} alt="authorization" />
         </div>
      );
 }

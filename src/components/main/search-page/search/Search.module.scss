@@ -99,3 +99,26 @@
 .img {
     margin-right: -50px;
 }
+
+@media (max-width: 375px) {
+    .search {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+    }
+    .title {
+        @include mixins.font(28px, 34px);
+        // margin-bottom: 25px;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .date {
+        flex-direction: column;
+    }
+    .checkbox {
+        display: none;
+    }
+}

@@ -16,3 +16,9 @@
 .text {
     @include mixins.font(18px, 22px);
 }
+
+@media (max-width: 375px) {
+    .slide {
+        width: 298px;
+    }
+}

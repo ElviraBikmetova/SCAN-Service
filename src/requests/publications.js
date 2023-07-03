@@ -1,5 +1,5 @@
 import $api from "./instance";
-import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary } from "../store/publicationsSlice";
+import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleIsFetching } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
     // let ids
@@ -61,10 +61,10 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
     }
 
     return dispatch => {
+        dispatch(toggleIsFetching(true))
         $api.post('/objectsearch/histograms', inputData)
         .then( res => {
-            // console.log(res.data)
-            // localStorage.setItem('histograms', true)
+            dispatch(toggleIsFetching(false))
             dispatch(publicationsSummary(res.data))
         })
         .then( () => {

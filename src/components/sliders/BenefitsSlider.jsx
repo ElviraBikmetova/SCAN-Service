@@ -25,7 +25,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function BenefitsSlider() {
+export function BenefitsSlider() {
     const settings = {
         infinite: true,
         speed: 500,
@@ -40,11 +40,31 @@ function BenefitsSlider() {
       <Slider {...settings}>
         {data.map(slide => {
           return (
-            <Benefit key={slide.id} src={slide.src} text={slide.text}/>
+            <Benefit key={slide.id} src={slide.src} alt={slide.alt} text={slide.text}/>
           )
         })}
       </Slider>
      );
 }
 
-export default BenefitsSlider;
+export function BenefitsSliderForMobile() {
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        // centerMode: true,
+        prevArrow: <SamplePrevArrow />,
+        nextArrow: <SampleNextArrow />
+      };
+
+    return (
+      <Slider {...settings}>
+        {data.map(slide => {
+          return (
+            <Benefit key={slide.id} src={slide.src} alt={slide.alt} text={slide.text}/>
+          )
+        })}
+      </Slider>
+     );
+}

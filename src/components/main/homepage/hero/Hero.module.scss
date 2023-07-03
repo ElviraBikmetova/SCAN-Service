@@ -7,7 +7,7 @@
     align-items: flex-end;
     justify-content: space-between;
     position: relative;
-    padding: 24px 0 59px;
+    padding: 25px 0;
 }
 
 .content {
@@ -34,4 +34,21 @@
 .btn {
     @include mixins.btn($p-t-b: 16px, $p-l-r: 64px, $color: $white);
     @include mixins.font(22px, 27px);
+}
+
+@media (max-width: 375px) {
+    .hero {
+        flex-direction: column;
+    }
+    .content {
+        padding-bottom: 24px;
+    }
+    .title {
+        position: static;
+        @include mixins.font(28px, 34px);
+        margin-top: 0;
+    }
+    .subtitle {
+        margin-bottom: 32px;
+    }
 }

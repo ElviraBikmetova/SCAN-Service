@@ -1,14 +1,66 @@
 @use '../../styles/shared';
 
 .header {
-    @extend %d-f;
     @extend %font-14-17;
     letter-spacing: 0.01em;
+    // width: 100%;
+}
+
+.wrapper {
+    @extend %d-f;
 }
 
 .nav {
     ul {
         display: flex;
         column-gap: 49px;
+    }
+}
+
+.user {
+    max-width: 175px + 128px + 111px;
+    width: 100%;
+}
+
+.profile {
+    @extend %d-f;
+}
+
+.companies {
+    display: none;
+}
+
+.menuBurger {
+    display: none;
+}
+
+@media (max-width: 375px) {
+    .profile, .signIn {
+        display: none;
+    }
+    .companies {
+        display: flex;
+        max-width: 132px;
+    }
+    .nav {
+        display: none;
+    }
+    .menuBurger {
+        display: block;
+        height: 494px;
+    }
+    .logoWhite {
+        position: absolute;
+        top: -9px;
+        left: 14px;
+        width: 111px;
+    }
+    .burgerNav {
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 26px;
+        }
     }
 }

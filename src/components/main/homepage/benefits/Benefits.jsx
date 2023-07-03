@@ -1,16 +1,19 @@
 import css from './Benefits.module.scss'
 import benefits from '../../../../assets/img/benefits.svg'
-import BenefitsSlider from '../../../sliders/BenefitsSlider';
+import benefitsMobile from '../../../../assets/img/benefits-mobile.svg'
+import {BenefitsSlider, BenefitsSliderForMobile} from '../../../sliders/BenefitsSlider';
 import clsx from 'clsx';
 
 function Benefits() {
     return (
         <section className={css.benefits}>
-            <h2 className={css.title}>Почему именно мы</h2>
+            <h2 className={css.title}>Почему <br/> именно мы</h2>
             <div className={ clsx(css.slider,'benefits-slider')}>
-                <BenefitsSlider />
+                <div className={css.benefitsSlider}><BenefitsSlider /></div>
+                <div className={css.benefitsSliderForMobile}><BenefitsSliderForMobile /></div>
             </div>
-            <img src={benefits} alt="benefits" />
+            <div className={css.img}><img src={benefits} alt="benefits" /></div>
+            <div className={css.imgMobile}><img src={benefitsMobile} alt="benefits" /></div>
         </section>
      );
 }

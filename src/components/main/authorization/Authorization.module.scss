@@ -30,7 +30,8 @@
 
 .form {
     padding: 25px 25px 39px;
-    width: 429px;
+    // width: 429px;
+    // width: 100%;
     display: flex;
 	flex-direction: column;
     @include mixins.font(16px, 19px);
@@ -114,4 +115,40 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.authMobile {
+    display: none;
+}
+
+@media (max-width: 375px) {
+    .authorization {
+        flex-direction: column;
+        padding-top: 30px;
+    }
+    .title {
+        @include mixins.font(22px, 26px);
+        margin-bottom: 126px;
+    }
+    .auth {
+        display: none;
+    }
+    .authMobile {
+        display: block;
+    }
+    .lock {
+        top: -80px;
+        left: 60px;
+    }
+    .form {
+        // width: 335px;
+        @include mixins.font(14px, 17px);
+        padding: 25px 15px 39px;
+    }
+    .tab {
+        // flex-grow: 0;
+    }
+    .btn {
+        // width: 70px;
+    }
 }

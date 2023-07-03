@@ -1,4 +1,4 @@
-
+@use './styles/vars' as * ;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @font-face {
@@ -66,6 +66,7 @@ h1, h2 {
 .benefits-slider {
   position: relative;
   .slick-prev, .slick-next {
+    // z-index: 1000;
     width: auto;
     height: auto;
   }
@@ -89,5 +90,85 @@ h1, h2 {
   }
   .slick-next {
     right: -50px;
+  }
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 25px;
+  right: 26px;
+  top: 34px;
+  display: none;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: $cyan;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  // background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 25px !important;
+  width: 25px !important;
+  top: 30px !important;
+  right: 24px !important;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  // background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  height: 494px !important;
+  // height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $cyan;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #fff;
+  padding: 0.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  top: 0px;
+  left: 0px;
+
+}
+
+@media (max-width: 375px) {
+  .bm-burger-button {
+    display: block;
   }
 }

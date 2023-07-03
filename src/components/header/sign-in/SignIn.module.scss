@@ -23,7 +23,24 @@
 .btn {
     font-weight: 500;
     @include mixins.btn($aquamarine, 4px, 10px);
-    // background: $aquamarine;
-    // border-radius: 5px;
-    // padding: 4px 10px;
+}
+
+@media (max-width: 375px) {
+    .auth {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .reg {
+        color: #fff;
+        @include mixins.font(16px, 19px);
+    }
+    .line {
+        display: none;
+    }
+    .btn {
+        width: 295px;
+        padding: 14px 0;
+        text-align: center;
+        @include mixins.font(20px, 24px);
+    }
 }

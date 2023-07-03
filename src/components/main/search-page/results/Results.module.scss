@@ -65,6 +65,19 @@
     width: 90%;
 }
 
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+}
+
 .list {
     display: flex;
     flex-direction: column;
@@ -84,4 +97,23 @@
     letter-spacing: 0.04em;
     @include mixins.font(22px, 27px);
     margin: 0 auto;
+}
+
+@media (max-width: 375px) {
+    .overall {
+        padding-top: 0;
+    }
+    .header {
+        flex-direction: column;
+    }
+    .title {
+        @include mixins.font(28px, 34px);
+        margin: 20px 0;
+    }
+    .img {
+        margin-bottom: 60px;
+    }
+    .h2 {
+        @include mixins.font(28px, 34px);
+    }
 }

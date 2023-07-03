@@ -9,16 +9,28 @@ function Profile() {
     const logout = () => dispatch(userLogout())
 
     return (
-        <div className={css.profile}>
-            <Companies />
-            <div className={css.user}>
-                <div className={css.info}>
-                    <p className={css.name}>Алексей А.</p>
-                    <button className={css.btn} onClick={logout}>Выйти</button>
+        <>
+            <div className={css.profile}>
+                <Companies />
+                <div className={css.user}>
+                    <div className={css.info}>
+                        <p className={css.name}>Алексей А.</p>
+                        <button className={css.btn} onClick={logout}>Выйти</button>
+                    </div>
+                    <img className={css.avatar} src={avatar} alt="avatar" />
                 </div>
-                <img className={css.avatar} src={avatar} alt="avatar" />
             </div>
-        </div>
+            <div className={css.profileBurger}>
+                <div className={css.user}>
+                    <div className={css.info}>
+                        <p className={css.name}>Алексей А.</p>
+                        <button className={css.btn} onClick={logout}>Выйти</button>
+                    </div>
+                    <img className={css.avatar} src={avatar} alt="avatar" />
+                </div>
+            </div>
+        </>
+
      );
 }
 

@@ -7,11 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getDocuments, getSummary } from '../../../../requests/publications'
 import clsx from 'clsx'
+import loader from '../../../../assets/img/loader.gif'
 
 function Results(props) {
     const {setResultsVisible} = props
     localStorage.setItem('currentPage', 'resultsPage')
     const request = JSON.parse(localStorage.getItem('request'))
+    const result = useSelector(state => state.publications.result)
+    const isFetching = useSelector(state => state.publications.isFetching)
+    // console.log(isFetching)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -87,11 +91,15 @@ function Results(props) {
         <div className={css.results}>
             <section className={css.overall}>
                 <div className={css.header}>
-                    <div>
-                        <h1 className={css.title}>Ищем. Скоро будут результаты</h1>
-                        <p className={css.subtitle}>Поиск может занять некоторое время, просим сохранять терпение.</p>
-                    </div>
-                    <img src={results} alt="results" />
+                    {!result ?
+                        <div>
+                            <h1 className={css.title}>Ищем. Скоро будут результаты</h1>
+                            <p className={css.subtitle}>Поиск может занять некоторое время, просим сохранять терпение.</p>
+                        </div>
+                        :
+                        <h1 className={css.title}>Результаты поиска</h1>
+                    }
+                    <img className={css.img} src={results} alt="results" />
                 </div>
                 <div className={css.summary}>
                     <h2 className={css.h2}>Общая сводка</h2>
@@ -103,7 +111,13 @@ function Results(props) {
                             <p>Риски</p>
                         </div>
                         <div className={clsx(css.slider, 'summary-slider')}>
-                            <SummarySlider />
+                        {isFetching ?
+                            <div className={css.loading}>
+                                <img className={css.loader} src={loader} alt="loader" />
+                                <p>Загружаем данные</p>
+                            </div>
+                            : <SummarySlider />
+                        }
                         </div>
                     </div>
                 </div>
