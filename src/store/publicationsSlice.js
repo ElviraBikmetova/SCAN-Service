@@ -6,8 +6,10 @@ const publicationsSlice = createSlice({
         histograms: {},
         ids: [],
         documents: [],
-        result: false,
-        isFetching: false
+        isResult: false,
+        isFetching: false,
+        isRequest: false,
+        isEmptyResponse: false
     },
     reducers: {
         publicationsSummary(state, action) {
@@ -18,7 +20,7 @@ const publicationsSlice = createSlice({
         },
         publicationsDocuments(state, action) {
             state.documents = action.payload
-            state.result = true
+            state.isResult = true
         },
         addDocuments(state, action) {
             // state.documents = action.payload
@@ -31,10 +33,19 @@ const publicationsSlice = createSlice({
         },
         toggleIsFetching(state, action) {
             state.isFetching = action.payload
+        },
+        toggleIsRequest(state, action) {
+            state.isFetching = action.payload
+        },
+        toggleisResult(state, action) {
+            state.isResult = action.payload
+        },
+        toggleisEmptyResponse(state, action) {
+            state.isEmptyResponse = action.payload
         }
     }
 })
 
-export const {publicationsSummary, publicationsIds, publicationsDocuments, addDocuments, toggleIsFetching} = publicationsSlice.actions
+export const {publicationsSummary, publicationsIds, publicationsDocuments, addDocuments, toggleIsFetching, toggleIsRequest, toggleisResult, toggleisEmptyResponse} = publicationsSlice.actions
 
 export default publicationsSlice.reducer

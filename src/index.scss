@@ -168,6 +168,43 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 @media (max-width: 375px) {
+  .benefits-slider {
+    .slick-list {
+      // overflow: hidden;
+      // display: flex;
+      // justify-content: space-between;
+    }
+    .slick-track {
+      // display: flex;
+      // gap: 30px;
+      // justify-content: space-between;
+    }
+    .slick-prev, .slick-next {
+      // z-index: 1000;
+      // opacity: 1;
+      // visibility: visible;
+      // overflow: visible;
+      // display: block;
+    }
+    .slick-prev {
+      // top: 10px;
+      // left: -55px;
+    }
+    .slick-next {
+      // top: 10px;
+      // right: -55px;
+    }
+  }
+  .summary-slider {
+    .slick-prev {
+      top: 10px;
+      left: -55px;
+    }
+    .slick-next {
+      top: 10px;
+      right: -55px;
+    }
+  }
   .bm-burger-button {
     display: block;
   }

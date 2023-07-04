@@ -78,6 +78,14 @@
     height: 50px;
 }
 
+.summarySliderForMobile {
+    display: none;
+}
+
+.message {
+    font-size: 25px;
+}
+
 .list {
     display: flex;
     flex-direction: column;
@@ -112,6 +120,26 @@
     }
     .img {
         margin-bottom: 60px;
+    }
+    .slider {
+        margin: 0 auto;
+    }
+    .overallSummary {
+        flex-direction: column;
+        max-width: 298px;
+        margin: 0 auto;
+    }
+    .summaryHeader {
+        flex-direction: row;
+        justify-content: space-between;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 0;
+    }
+    .summarySlider {
+        display: none;
+    }
+    .summarySliderForMobile {
+        display: block;
     }
     .h2 {
         @include mixins.font(28px, 34px);

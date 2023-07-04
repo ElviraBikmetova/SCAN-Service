@@ -1,51 +1,40 @@
 import css from './Results.module.scss'
 import results from '../../../../assets/img/results.svg'
 import Document from './document/Document'
-// import docs from '../../../../json/documents.json'
-import SummarySlider from '../../../sliders/SummarySlider'
+import {SummarySlider, SummarySliderForMobile} from '../../../sliders/SummarySlider'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getDocuments, getSummary } from '../../../../requests/publications'
 import clsx from 'clsx'
 import loader from '../../../../assets/img/loader.gif'
+import getNoun from '../../../../utils/getNoun'
 
 function Results(props) {
     const {setResultsVisible} = props
     localStorage.setItem('currentPage', 'resultsPage')
     const request = JSON.parse(localStorage.getItem('request'))
-    const result = useSelector(state => state.publications.result)
+    const isResult = useSelector(state => state.publications.isResult)
     const isFetching = useSelector(state => state.publications.isFetching)
-    // console.log(isFetching)
+    const isEmptyResponse = useSelector(state => state.publications.isEmptyResponse)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // if (currentPage) {
             setResultsVisible(true)
             dispatch(getSummary(request.inn, request.tonality, request.limit, request.startDate, request.endDate, request.maxFullness, request.inBusinessNews, request.onlyMainRole, request.onlyWithRiskFactors, request.excludeTechNews, request.excludeAnnouncements, request.excludeDigests))
-        // }
     }, [])
 
     const ids = useSelector(state => state.publications.ids)
     const [overall, setOverall] = useState(0)
     const [idsCount, setIdsCount] = useState(0)
-    // console.log('objectsearch', objectsearch)
-
 
     useEffect(() => {
         if (ids.length > 0) {
             setOverall(ids.length)
-        //   console.log(objectsearch.items.length)
-            // const idsForRequest = ids.slice(idsCount,  idsCount+10)
-            // if(idsForRequest.length) {
-            // dispatch(getDocuments(idsForRequest))
-            // }
         }
       }, [ids]);
 
     useEffect(() => {
         if (ids.length > 0) {
-            // setOverall(ids.length)
-        //   console.log(objectsearch.items.length)
             const idsForRequest = ids.slice(idsCount,  idsCount+10)
             if(idsForRequest.length) {
             dispatch(getDocuments(idsForRequest))
@@ -53,22 +42,9 @@ function Results(props) {
         }
       }, [idsCount]);
 
-      const showMore = () => {
-        // const idsForRequest = ids.slice(idsCount, 10);
+    const showMore = () => {
         setIdsCount(idsCount => idsCount + 10)
-      }
-
-      function getVariantWord(number) {
-        let word = 'варант';
-        if (number % 10 === 1 && number % 100 !== 11) {
-          word += '';
-        } else if ((number % 10 >= 2 && number % 10 <= 4) && (number % 100 < 10 || number % 100 >= 20)) {
-          word += 'а';
-        } else {
-          word += 'ов';
-        }
-        return word;
-      }
+    }
 
     const documents = useSelector(state => state.publications.documents)
     const [docs, setDocs] = useState([])
@@ -80,18 +56,13 @@ function Results(props) {
           } else {
             console.error('documents is not an array')
           }
-        // setPublications(documents.map(doc => doc.ok))
-            // console.log(documents)
     }, [documents])
-    // const doc =  publications
-    // const doc = documents.length > 0 ? documents[0].ok : null
-    // console.log(Array.isArray(docs))
 
     return (
         <div className={css.results}>
             <section className={css.overall}>
                 <div className={css.header}>
-                    {!result ?
+                    {!isResult ?
                         <div>
                             <h1 className={css.title}>Ищем. Скоро будут результаты</h1>
                             <p className={css.subtitle}>Поиск может занять некоторое время, просим сохранять терпение.</p>
@@ -101,9 +72,10 @@ function Results(props) {
                     }
                     <img className={css.img} src={results} alt="results" />
                 </div>
+                {!isEmptyResponse ?
                 <div className={css.summary}>
                     <h2 className={css.h2}>Общая сводка</h2>
-                    <p className={css.found}>Найдено {overall} {getVariantWord(overall)}</p>
+                    <p className={css.found}>Найдено {overall} {getNoun(overall, 'вариант', 'варианта', 'вариантов')}</p>
                     <div className={css.overallSummary}>
                         <div className={css.summaryHeader}>
                             <p>Период</p>
@@ -116,12 +88,18 @@ function Results(props) {
                                 <img className={css.loader} src={loader} alt="loader" />
                                 <p>Загружаем данные</p>
                             </div>
-                            : <SummarySlider />
+                            : <div>
+                                <div className={css.summarySlider}><SummarySlider /></div>
+                                <div className={css.summarySliderForMobile}><SummarySliderForMobile /></div>
+                            </div>
                         }
                         </div>
                     </div>
                 </div>
+                : <p className={css.message}>Публикации по заданным параметрам не найдены</p>
+                }
             </section>
+            {!isEmptyResponse &&
             <section className={css.list}>
                 <h2 className={css.h2}>Список документов</h2>
                 <div className={css.docs}>
@@ -129,6 +107,7 @@ function Results(props) {
                 </div>
                 {!!remainingPublications && <button className={css.btn} onClick={showMore} >Показать больше</button>}
             </section>
+            }
         </div>
      );
 }

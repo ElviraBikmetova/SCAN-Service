@@ -3,9 +3,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import mock from '../../json/summary.json';
 import ResultCard from "../main/search-page/results/result-card/ResultCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ArrowPrev from "../../assets/svg-in-js/arrrow-prev";
 import ArrowNext from "../../assets/svg-in-js/arrow-next";
+import { useEffect, useState } from "react";
+import { toggleisEmptyResponse, toggleisResult } from "../../store/publicationsSlice";
 
 
 function SamplePrevArrow(props) {
@@ -26,7 +28,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SummarySlider() {
+export function SummarySlider() {
   const settings = {
       infinite: false,
       speed: 500,
@@ -36,27 +38,75 @@ function SummarySlider() {
       nextArrow: <SampleNextArrow />
     };
 
-  const histograms = useSelector(state => state.publications.histograms.data)
-  let summary
+    const dispatch = useDispatch()
+    const histograms = useSelector(state => state.publications.histograms)
+    const [histogramsData, setHistogramsData] = useState({})
+    let summary
 
-  if (histograms) {
-    summary = histograms[0].data.map((item, index) => ({
-      date: item.date,
-      totalDocuments: histograms[0].data[index].value,
-      riskFactors: histograms[1].data[index].value
-    }));
-  }
+    useEffect(() => {
+        setHistogramsData(histograms)
+    }, [histograms])
 
-  return (
-    <Slider {...settings}>
-      {summary && summary.map(slide => {
-        // console.log(slide.date)
-        return (
-          <ResultCard key={slide.date} slide={slide}/>
-        )
-      })}
-    </Slider>
-    );
+    if (histogramsData?.data?.length || null) {
+      const data = histogramsData.data
+      summary = data[0].data.map((item, index) => ({
+        date: item.date,
+        totalDocuments: data[0].data[index].value,
+        riskFactors: data[1].data[index].value
+      }));
+      dispatch(toggleisEmptyResponse(false))
+      return (
+        <Slider {...settings}>
+          {summary && summary.map(slide => {
+            return (
+              <ResultCard key={slide.date} slide={slide}/>
+            )
+          })}
+        </Slider>
+        );
+    } else {
+      dispatch(toggleisResult(true))
+    }
 }
 
-export default SummarySlider;
+export function SummarySliderForMobile() {
+  const settings = {
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      prevArrow: <SamplePrevArrow />,
+      nextArrow: <SampleNextArrow />
+    };
+
+    const dispatch = useDispatch()
+    const histograms = useSelector(state => state.publications.histograms)
+    const [histogramsData, setHistogramsData] = useState({})
+
+    let summary
+
+    useEffect(() => {
+        setHistogramsData(histograms)
+    }, [histograms])
+
+    if (histogramsData?.data?.length || null) {
+      const data = histogramsData.data
+      summary = data[0].data.map((item, index) => ({
+        date: item.date,
+        totalDocuments: data[0].data[index].value,
+        riskFactors: data[1].data[index].value
+      }));
+      dispatch(toggleisEmptyResponse(false))
+      return (
+        <Slider {...settings}>
+          {summary && summary.map(slide => {
+            return (
+              <ResultCard key={slide.date} slide={slide}/>
+            )
+          })}
+        </Slider>
+        );
+    } else {
+      dispatch(toggleisResult(true))
+    }
+}

@@ -1,9 +1,8 @@
 import $api from "./instance";
-import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleIsFetching } from "../store/publicationsSlice";
+import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleisEmptyResponse, toggleIsFetching } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
-    // let ids
-    // console.log('inn in getSummary', inn)
+
     const inputData = {
         issueDateInterval: {startDate, endDate},
         "searchContext": {
@@ -73,11 +72,15 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
                 const ids = res.data.items.map(item => item.encodedId)
                 dispatch(publicationsIds(ids))
                 const idsForRequest = ids.slice(0, 10)
-                $api.post('/documents', {ids: idsForRequest})
-                .then(res => {
-                    dispatch(publicationsDocuments(res.data))
-                })
-                .catch(err => console.log(err.response.data.message))
+                if (idsForRequest.length) {
+                    $api.post('/documents', {ids: idsForRequest})
+                    .then(res => {
+                        dispatch(publicationsDocuments(res.data))
+                    })
+                    .catch(err => console.log(err.response.data.message))
+                } else {
+                    dispatch(toggleisEmptyResponse(true))
+                }
             })
             .catch(err => console.log(err.response.data.message))
         })

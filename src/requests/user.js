@@ -1,9 +1,10 @@
 import $api from "./instance";
 import { userAuth, userError, userInfo } from "../store/userSlice";
+import { toggleIsRequest } from "../store/publicationsSlice";
 
 export const logIn = (login, password) => {
-    // console.log('login', login)
     return dispatch => {
+        dispatch(toggleIsRequest(true))
         $api.post('/account/login', {
             login,
             password
@@ -14,10 +15,10 @@ export const logIn = (login, password) => {
             localStorage.setItem('expire', res.data.expire)
         })
         .then( () => {
+            dispatch(toggleIsRequest(false))
             dispatch(getInfo())
         })
         .catch(err => {
-            // console.log(err.response.data.message)
             dispatch(userError(err.response.data.message))
         })
     }
