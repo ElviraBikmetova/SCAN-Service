@@ -1,5 +1,5 @@
 import $api from "./instance";
-import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleisEmptyResponse, toggleIsFetching, toggleisResult } from "../store/publicationsSlice";
+import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleisEmptyResponse, toggleIsFetching, toggleIsNewDocFetching, toggleisResult } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
 
@@ -94,9 +94,11 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
 
 export const getDocuments= (ids) => {
     return async dispatch => {
+        dispatch(toggleIsNewDocFetching(true))
         try {
             const response = await $api.post('/documents', {ids: ids})
             dispatch(addDocuments(response.data))
+            dispatch(toggleIsNewDocFetching(false))
         } catch (e) {
             console.log(e.response.data.message)
         }

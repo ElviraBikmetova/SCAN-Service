@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { getDocuments, getSummary } from '../../../../requests/publications'
 import clsx from 'clsx'
 import loader from '../../../../assets/img/loader.gif'
+import preloader from '../../../../assets/img/preloader.gif'
 import getNoun from '../../../../utils/getNoun'
 
 function Results(props) {
@@ -16,6 +17,7 @@ function Results(props) {
     const isResult = useSelector(state => state.publications.isResult)
     const isFetching = useSelector(state => state.publications.isFetching)
     const isEmptyResponse = useSelector(state => state.publications.isEmptyResponse)
+    const isNewDocFetching = useSelector(state => state.publications.isNewDocFetching)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -105,7 +107,11 @@ function Results(props) {
                 <div className={css.docs}>
                     {docs.map(doc => <Document key={doc.id} doc={doc} />)}
                 </div>
-                {!!remainingPublications && <button className={css.btn} onClick={showMore} >Показать больше</button>}
+                {isNewDocFetching
+                ? <div className={css.preloader}><img src={preloader} alt="loader" /></div>
+                : !!remainingPublications &&
+                <button className={css.btn} onClick={showMore}>Показать больше</button>
+                }
             </section>
             }
         </div>

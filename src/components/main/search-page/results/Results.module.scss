@@ -107,6 +107,17 @@
     margin: 0 auto;
 }
 
+.preloader {
+    width: 305px;
+    height: 59px;
+    border: 2px solid $blue;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (max-width: 375px) {
     .overall {
         padding-top: 0;

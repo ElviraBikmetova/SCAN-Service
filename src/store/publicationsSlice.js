@@ -9,7 +9,8 @@ const publicationsSlice = createSlice({
         isResult: false,
         isFetching: false,
         isRequest: false,
-        isEmptyResponse: false
+        isEmptyResponse: false,
+        isNewDocFetching: false
     },
     reducers: {
         publicationsSummary(state, action) {
@@ -23,13 +24,6 @@ const publicationsSlice = createSlice({
             state.isResult = true
         },
         addDocuments(state, action) {
-            // state.documents = action.payload
-            // state.documents.push(action.payload)
-            // state.documents.push(action.payload.map(item => item))
-            // for (let i = 0; i < action.payload.length; i++) {
-            //     state.documents.push(action.payload[i]);
-            //   }
-            // state.documents = [...state.documents, ...action.payload]
             state.documents.push(...action.payload)
         },
         toggleIsFetching(state, action) {
@@ -43,10 +37,13 @@ const publicationsSlice = createSlice({
         },
         toggleisEmptyResponse(state, action) {
             state.isEmptyResponse = action.payload
+        },
+        toggleIsNewDocFetching(state, action) {
+            state.isNewDocFetching = action.payload
         }
     }
 })
 
-export const {publicationsSummary, publicationsIds, publicationsDocuments, addDocuments, toggleIsFetching, toggleIsRequest, toggleisResult, toggleisEmptyResponse} = publicationsSlice.actions
+export const {publicationsSummary, publicationsIds, publicationsDocuments, addDocuments, toggleIsFetching, toggleIsRequest, toggleisResult, toggleisEmptyResponse, toggleIsNewDocFetching} = publicationsSlice.actions
 
 export default publicationsSlice.reducer
