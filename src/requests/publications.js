@@ -1,5 +1,5 @@
 import $api from "./instance";
-import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleisEmptyResponse, toggleIsFetching } from "../store/publicationsSlice";
+import { addDocuments, publicationsDocuments, publicationsIds, publicationsSummary, toggleisEmptyResponse, toggleIsFetching, toggleisResult } from "../store/publicationsSlice";
 
 export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, excludeTechNews, excludeAnnouncements, excludeDigests) => {
 
@@ -84,7 +84,11 @@ export const getSummary = (inn, tonality, limit, startDate, endDate, maxFullness
             })
             .catch(err => console.log(err.response.data.message))
         })
-        .catch(err => console.log(err.response.data.message))
+        .catch(err => {
+            dispatch(toggleisEmptyResponse(true))
+            dispatch(toggleisResult(true))
+            console.log(err.response.data.message)
+        })
     }
 }
 

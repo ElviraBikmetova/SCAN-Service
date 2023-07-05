@@ -47,6 +47,14 @@ export function SummarySlider() {
         setHistogramsData(histograms)
     }, [histograms])
 
+    useEffect(() => {
+      if (histogramsData?.data?.length || null) {
+        dispatch(toggleisEmptyResponse(false))
+      } else {
+        dispatch(toggleisResult(true))
+      }
+    },[dispatch, histogramsData?.data?.length])
+
     if (histogramsData?.data?.length || null) {
       const data = histogramsData.data
       summary = data[0].data.map((item, index) => ({
@@ -54,7 +62,6 @@ export function SummarySlider() {
         totalDocuments: data[0].data[index].value,
         riskFactors: data[1].data[index].value
       }));
-      dispatch(toggleisEmptyResponse(false))
       return (
         <Slider {...settings}>
           {summary && summary.map(slide => {
@@ -64,8 +71,6 @@ export function SummarySlider() {
           })}
         </Slider>
         );
-    } else {
-      dispatch(toggleisResult(true))
     }
 }
 
@@ -89,6 +94,14 @@ export function SummarySliderForMobile() {
         setHistogramsData(histograms)
     }, [histograms])
 
+    useEffect(() => {
+      if (histogramsData?.data?.length || null) {
+        dispatch(toggleisEmptyResponse(false))
+      } else {
+        dispatch(toggleisResult(true))
+      }
+    },[dispatch, histogramsData?.data?.length])
+
     if (histogramsData?.data?.length || null) {
       const data = histogramsData.data
       summary = data[0].data.map((item, index) => ({
@@ -96,7 +109,6 @@ export function SummarySliderForMobile() {
         totalDocuments: data[0].data[index].value,
         riskFactors: data[1].data[index].value
       }));
-      dispatch(toggleisEmptyResponse(false))
       return (
         <Slider {...settings}>
           {summary && summary.map(slide => {
@@ -106,7 +118,5 @@ export function SummarySliderForMobile() {
           })}
         </Slider>
         );
-    } else {
-      dispatch(toggleisResult(true))
-    }
+    } 
 }

@@ -25,7 +25,7 @@ function Profile() {
                     <img className={css.avatar} src={avatar} alt="avatar" />
                 </div>
             </div>
-            <div className={css.profileBurger}>
+            {/* <div className={css.profileBurger}>
                 <div className={css.user}>
                     <div className={css.info}>
                         <p className={css.name}>Алексей А.</p>
@@ -33,7 +33,7 @@ function Profile() {
                     </div>
                     <img className={css.avatar} src={avatar} alt="avatar" />
                 </div>
-            </div>
+            </div> */}
         </>
 
      );

@@ -24,11 +24,11 @@ function Search(props) {
     } = useForm({
         mode: 'onBlur',
         defaultValues: {
-            inn: '7710137066', // убрать значение по умолчанию
+            // inn: '7710137066', // убрать значение по умолчанию
             tonality: 'any',
-            limit: 1000, // убрать значение по умолчанию
-            startDate: '2022-01-01', // убрать значение по умолчанию
-            endDate: '2023-06-01' // убрать значение по умолчанию
+            // limit: 1000, // убрать значение по умолчанию
+            // startDate: '2022-01-01', // убрать значение по умолчанию
+            // endDate: '2023-06-01' // убрать значение по умолчанию
         }
     })
 
@@ -69,23 +69,23 @@ function Search(props) {
                         <label htmlFor="date">Диапазон поиска *</label>
                         <div className={css.date}>
                             <div>
-                                <input id='date' type="date" placeholder='Дата начала' {...register('startDate', dateValidate)} />
+                                <input id='date' type="date" placeholder='Дата начала' data-placeholder='Дата начала' {...register('startDate', dateValidate)} />
                             </div>
                             <div>
-                                <input type="date" placeholder='Дата конца' {...register('endDate', dateValidate)} />
+                                <input type="date" placeholder='Дата конца' data-placeholder='Дата конца' {...register('endDate', dateValidate)} />
                             </div>
                         </div>
                         {((errors?.startDate || errors?.endDate) && !isValid) && <p className={css.error}>{errors?.startDate?.message || errors?.endDate?.message}</p>}
                     </div>
                     <div className={css.right}>
                         <div className={css.checkbox}>
-                            <label><input type="checkbox" value={maxFullness} onChange={e => setMaxFullness(e.target.checked)} />Признак максимальной полноты</label>
-                            <label><input type="checkbox" value={inBusinessNews} onChange={e => setInBusinessNews(e.target.checked)} />Упоминания в бизнес-контексте</label>
-                            <label><input type="checkbox" value={onlyMainRole} onChange={e => setOnlyMainRole(e.target.checked)} />Главная роль в публикации</label>
-                            <label><input type="checkbox" value={onlyWithRiskFactors} onChange={e => setOnlyWithRiskFactors(e.target.checked)} />Публикации только с риск-факторами</label>
-                            <label><input type="checkbox" value={excludeTechNews} onChange={e => setExcludeTechNews(!e.target.checked)} />Включать технические новости рынков</label>
-                            <label><input type="checkbox" value={excludeAnnouncements} onChange={e => setExcludeAnnouncements(!e.target.checked)} />Включать анонсы и календари</label>
-                            <label><input type="checkbox" value={excludeDigests} onChange={e => setExcludeDigests(!e.target.checked)} />Включать сводки новостей</label>
+                            <label><input type="checkbox" name='maxFullness' value={maxFullness} onChange={e => setMaxFullness(e.target.checked)} /><span>Признак максимальной полноты</span></label>
+                            <label><input type="checkbox" name='inBusinessNews' value={inBusinessNews} onChange={e => setInBusinessNews(e.target.checked)} /><span>Упоминания в бизнес-контексте</span></label>
+                            <label><input type="checkbox" name='onlyMainRole' value={onlyMainRole} onChange={e => setOnlyMainRole(e.target.checked)} /><span>Главная роль в публикации</span></label>
+                            <label><input type="checkbox" name='onlyWithRiskFactors' value={onlyWithRiskFactors} onChange={e => setOnlyWithRiskFactors(e.target.checked)} /><span>Публикации только с риск-факторами</span></label>
+                            <label><input type="checkbox" name='excludeTechNews' value={excludeTechNews} onChange={e => setExcludeTechNews(!e.target.checked)} /><span>Включать технические новости рынков</span></label>
+                            <label><input type="checkbox" name='excludeAnnouncements' value={excludeAnnouncements} onChange={e => setExcludeAnnouncements(!e.target.checked)} /><span>Включать анонсы и календари</span></label>
+                            <label><input type="checkbox" name='excludeDigests' value={excludeDigests} onChange={e => setExcludeDigests(!e.target.checked)} /><span>Включать сводки новостей</span></label>
                         </div>
                         <div>
                             <button className={css.submit} type='submit' disabled={!isValid} >Поиск</button>

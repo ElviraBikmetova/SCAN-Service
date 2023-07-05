@@ -47,9 +47,22 @@
     input[type='date'] {
         width: 176px;
         height: 43px;
+        cursor: pointer;
+        &::before {
+            content: attr(data-placeholder);
+            width: 100%;
+            color: rgba(0, 0, 0, 0.4);
+        }
+        &:focus, &:valid {
+            &::before {
+                display: none;
+            }
+        }
+        // &:valid {}
     }
     select {
         padding-left: 22px;
+        cursor: pointer;
     }
 }
 
@@ -77,11 +90,50 @@
 .checkbox {
     display: flex;
     flex-direction: column;
+    color: rgba(0, 0, 0, 0.4);
     label {
         margin-bottom: 16px;
-    }
-    input {
-        margin-right: 17px;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+            color: #000;
+        }
+        input {
+            margin-right: 17px;
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            width: 20px;
+            height: 20px;
+            // display: inline-flex;
+        }
+        input + span {
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                flex-shrink: 0;
+                flex-grow: 0;
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                margin-right: 17px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 50% 50%;
+            }
+        }
+        input[type="checkbox"]:checked + span {
+            color: #000;
+            &::before {
+                border-color: #000;
+                background-color: #fff;
+                background-image: url('../../../../assets/img/checkbox.svg');
+            }
+        }
+        span {
+            display: inline-block;
+        }
     }
 }
 
@@ -94,6 +146,7 @@
 
 .required {
     @extend %font-14-17;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .img {

@@ -24,7 +24,6 @@ function Header() {
                                 <Link to='/'>FAQ</Link>
                             </ul>
                         </nav>
-                        {/* {isAuth ? <Profile /> : <SignIn />} */}
                         {isAuth ?
                             <div className={css.user}>
                                 <div className={css.profile}><Profile /></div>

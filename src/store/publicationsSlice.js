@@ -29,7 +29,8 @@ const publicationsSlice = createSlice({
             // for (let i = 0; i < action.payload.length; i++) {
             //     state.documents.push(action.payload[i]);
             //   }
-            state.documents = [...state.documents, ...action.payload]
+            // state.documents = [...state.documents, ...action.payload]
+            state.documents.push(...action.payload)
         },
         toggleIsFetching(state, action) {
             state.isFetching = action.payload
