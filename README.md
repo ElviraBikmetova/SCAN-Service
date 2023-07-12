@@ -1,3 +1,7 @@
+Данные для входа в аккаунт:
+login: sf_student9
+password: DTdEwAn
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
