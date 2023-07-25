@@ -4,19 +4,19 @@
 
 Использованы библиотеки:
 
-Redux Toolkit для хранения и изменения данных.
+- Redux Toolkit для хранения и изменения данных.
 
-React Router v6 для маршрутизации страниц без перезагрузки.
+- React Router v6 для маршрутизации страниц без перезагрузки.
 
-Axios (instance, interceptors) для асинхронных запросов на сервер.
+- Axios (instance, interceptors) для асинхронных запросов на сервер.
 
-React Hook Form для работы с формами.
+- React Hook Form для работы с формами.
 
-React burger menu для создания меню-бургер для мобильной версии.
+- React burger menu для создания меню-бургер для мобильной версии.
 
-React-slick для создания слайдеров.
+- React-slick для создания слайдеров.
 
-Dompurify и Html react parser для парсинга xml.
+- Dompurify и Html react parser для парсинга xml.
 
 
 Данные для входа в аккаунт:
